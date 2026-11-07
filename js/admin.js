@@ -1,7 +1,7 @@
 
 /* =====================================================
    TROVA | PANEL ADMINISTRATIVO
-   Conexión con Supabase
+   Supabase + Seguridad de sesión
    ===================================================== */
 
 const db = window.trovaSupabase;
@@ -9,13 +9,24 @@ const db = window.trovaSupabase;
 let currentUser = null;
 let currentStore = null;
 let currentRole = null;
+
 let productsCache = [];
 let categoriesCache = [];
 let ordersCache = [];
 
-/* ELEMENTOS */
+const $ = id => document.getElementById(id);
 
-const $ = (id) => document.getElementById(id);
+/* =====================================================
+   CONFIGURACIÓN DE SEGURIDAD
+===================================================== */
+
+const ADMIN_IDLE_TIMEOUT = 15 * 60 * 1000;
+let adminIdleTimer = null;
+let securityInitialized = false;
+
+/* =====================================================
+   MENSAJES Y UTILIDADES
+===================================================== */
 
 function showMessage(message, error = false) {
     const element = $("global-message");
@@ -26,6 +37,7 @@ function showMessage(message, error = false) {
     element.style.background = error ? "#a43e3e" : "#171717";
 
     clearTimeout(showMessage.timer);
+
     showMessage.timer = setTimeout(() => {
         element.style.display = "none";
     }, 4000);
@@ -79,11 +91,15 @@ function makeSlug(value) {
 function showError(context, error) {
     console.error("TROVA:", context, error);
 
-    const message = error?.message || "Error desconocido";
-    showMessage(context + ": " + message, true);
+    showMessage(
+        context + ": " + (error?.message || "Error desconocido"),
+        true
+    );
 }
 
-/* INICIO */
+/* =====================================================
+   INICIO
+===================================================== */
 
 document.addEventListener("DOMContentLoaded", async () => {
     if (!db) {
@@ -96,6 +112,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     bindEvents();
+    initializeAdminSecurity();
 
     const { data, error } = await db.auth.getSession();
 
@@ -110,16 +127,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         showLogin();
     }
 
-    db.auth.onAuthStateChange((event, session) => {
+    db.auth.onAuthStateChange((event) => {
         if (event === "SIGNED_OUT") {
-            currentUser = null;
-            currentStore = null;
+            clearAdminSession();
             showLogin();
         }
     });
 });
 
-/* EVENTOS */
+/* =====================================================
+   EVENTOS
+===================================================== */
 
 function bindEvents() {
     $("login-form")?.addEventListener("submit", login);
@@ -139,17 +157,18 @@ function bindEvents() {
 
     $("new-product-button")?.addEventListener("click", () => {
         resetProductForm();
-        $("product-form-card").classList.remove("hidden");
-        $("product-form-title").textContent = "Nuevo producto";
+        $("product-form-card")?.classList.remove("hidden");
+        if ($("product-form-title")) {
+            $("product-form-title").textContent = "Nuevo producto";
+        }
     });
 
     $("cancel-product")?.addEventListener("click", () => {
-        $("product-form-card").classList.add("hidden");
+        $("product-form-card")?.classList.add("hidden");
     });
 
     $("product-form")?.addEventListener("submit", saveProduct);
     $("product-search")?.addEventListener("input", renderProducts);
-
     $("category-form")?.addEventListener("submit", saveCategory);
     $("refresh-orders")?.addEventListener("click", loadOrders);
 
@@ -164,7 +183,9 @@ function bindEvents() {
     $("orders-list")?.addEventListener("change", handleOrderChange);
 }
 
-/* AUTENTICACIÓN */
+/* =====================================================
+   AUTENTICACIÓN
+===================================================== */
 
 function showLogin() {
     $("login-screen")?.classList.remove("hidden");
@@ -179,8 +200,8 @@ function showAdmin() {
 async function login(event) {
     event.preventDefault();
 
-    const email = $("email").value.trim();
-    const password = $("password").value;
+    const email = $("email")?.value.trim();
+    const password = $("password")?.value;
 
     showFormMessage("login-error", "Verificando acceso...");
 
@@ -209,13 +230,26 @@ async function logout() {
         return;
     }
 
+    clearAdminSession();
     showLogin();
 }
 
-/* IDENTIFICAR TIENDA Y PERMISOS */
+function clearAdminSession() {
+    clearTimeout(adminIdleTimer);
+
+    currentUser = null;
+    currentStore = null;
+    currentRole = null;
+}
+
+/* =====================================================
+   IDENTIFICAR TIENDA Y PERMISOS
+===================================================== */
 
 async function initializeAdmin(user) {
     currentUser = user;
+
+    resetAdminIdleTimer();
 
     try {
         const { data: memberships, error } = await db
@@ -225,13 +259,15 @@ async function initializeAdmin(user) {
 
         if (error) throw error;
 
-        if (!memberships || memberships.length === 0) {
+        if (!memberships?.length) {
             showLogin();
+
             showFormMessage(
                 "login-error",
-                "Tu usuario no está asociado a ninguna tienda. Debes registrarlo como miembro de TROVA.",
+                "Tu usuario no está asociado a ninguna tienda.",
                 true
             );
+
             await db.auth.signOut();
             return;
         }
@@ -240,11 +276,13 @@ async function initializeAdmin(user) {
 
         if (!["owner", "admin", "editor"].includes(membership.role)) {
             showLogin();
+
             showFormMessage(
                 "login-error",
-                "Tu usuario no tiene permisos para administrar esta tienda.",
+                "Tu usuario no tiene permisos administrativos.",
                 true
             );
+
             await db.auth.signOut();
             return;
         }
@@ -282,7 +320,79 @@ async function initializeAdmin(user) {
     }
 }
 
-/* NAVEGACIÓN */
+/* =====================================================
+   SEGURIDAD: 15 MINUTOS DE INACTIVIDAD
+===================================================== */
+
+function resetAdminIdleTimer() {
+    if (!currentUser) return;
+
+    clearTimeout(adminIdleTimer);
+
+    adminIdleTimer = setTimeout(async () => {
+        if (!currentUser) return;
+
+        showMessage(
+            "Sesión cerrada por 15 minutos de inactividad.",
+            true
+        );
+
+        await db.auth.signOut();
+
+        clearAdminSession();
+        showLogin();
+
+        showFormMessage(
+            "login-error",
+            "Tu sesión expiró por inactividad. Ingresa nuevamente."
+        );
+
+    }, ADMIN_IDLE_TIMEOUT);
+}
+
+function initializeAdminSecurity() {
+    if (securityInitialized) return;
+
+    securityInitialized = true;
+
+    const activityEvents = [
+        "mousedown",
+        "keydown",
+        "scroll",
+        "touchstart",
+        "click"
+    ];
+
+    activityEvents.forEach(eventName => {
+        document.addEventListener(eventName, resetAdminIdleTimer, {
+            passive: true
+        });
+    });
+
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            return;
+        }
+
+        if (currentUser) {
+            resetAdminIdleTimer();
+        }
+    });
+
+    window.addEventListener("pagehide", () => {
+        /*
+          No se cierra la sesión desde pagehide porque
+          puede ocurrir durante una recarga o navegación.
+          sessionStorage limita la sesión a la pestaña.
+        */
+    });
+
+    console.log("TROVA: seguridad activada.");
+}
+
+/* =====================================================
+   NAVEGACIÓN
+===================================================== */
 
 function navigate(section) {
     document.querySelectorAll(".admin-section").forEach(element => {
@@ -303,7 +413,9 @@ function navigate(section) {
     });
 }
 
-/* PRODUCTOS */
+/* =====================================================
+   PRODUCTOS
+===================================================== */
 
 async function loadProducts() {
     if (!currentStore) return;
@@ -331,7 +443,7 @@ function renderProducts() {
     const search = ($("product-search")?.value || "").toLowerCase();
 
     const filtered = productsCache.filter(product =>
-        product.name.toLowerCase().includes(search)
+        (product.name || "").toLowerCase().includes(search)
     );
 
     if (!filtered.length) {
@@ -461,9 +573,7 @@ async function saveProduct(event) {
             is_active: $("product-active").checked
         };
 
-        if (imageUrl) {
-            payload.image_url = imageUrl;
-        }
+        if (imageUrl) payload.image_url = imageUrl;
 
         let result;
 
@@ -474,31 +584,23 @@ async function saveProduct(event) {
                 .eq("id", id)
                 .eq("store_id", currentStore);
         } else {
-            result = await db
-                .from("products")
-                .insert(payload);
+            result = await db.from("products").insert(payload);
         }
 
         if (result.error) throw result.error;
-
-        showFormMessage(
-            "product-message",
-            id ? "Producto actualizado correctamente." :
-                "Producto creado correctamente."
-        );
 
         resetProductForm();
         $("product-form-card").classList.add("hidden");
 
         await loadProducts();
-        showMessage("Producto guardado correctamente.");
+
+        showMessage(id
+            ? "Producto actualizado correctamente."
+            : "Producto creado correctamente."
+        );
 
     } catch (error) {
-        showFormMessage(
-            "product-message",
-            error.message,
-            true
-        );
+        showFormMessage("product-message", error.message, true);
     } finally {
         button.disabled = false;
         button.textContent = "GUARDAR PRODUCTO";
@@ -506,10 +608,12 @@ async function saveProduct(event) {
 }
 
 function resetProductForm() {
-    $("product-form").reset();
-    $("product-id").value = "";
-    $("product-active").checked = true;
-    $("product-form-title").textContent = "Nuevo producto";
+    $("product-form")?.reset();
+    if ($("product-id")) $("product-id").value = "";
+    if ($("product-active")) $("product-active").checked = true;
+    if ($("product-form-title")) {
+        $("product-form-title").textContent = "Nuevo producto";
+    }
 }
 
 function editProduct(id) {
@@ -532,9 +636,7 @@ function editProduct(id) {
     $("product-form-title").textContent = "Editar producto";
     $("product-form-card").classList.remove("hidden");
 
-    $("product-form-card").scrollIntoView({
-        behavior: "smooth"
-    });
+    $("product-form-card").scrollIntoView({ behavior: "smooth" });
 }
 
 async function deleteProduct(id) {
@@ -562,18 +664,18 @@ function handleProductAction(event) {
     const button = event.target.closest("[data-action]");
     if (!button) return;
 
-    const id = button.dataset.id;
-
     if (button.dataset.action === "edit") {
-        editProduct(id);
+        editProduct(button.dataset.id);
     }
 
     if (button.dataset.action === "delete") {
-        deleteProduct(id);
+        deleteProduct(button.dataset.id);
     }
 }
 
-/* CATEGORÍAS Y SUBCATEGORÍAS */
+/* =====================================================
+   CATEGORÍAS Y SUBCATEGORÍAS
+===================================================== */
 
 async function loadCategories() {
     if (!currentStore) return;
@@ -662,7 +764,7 @@ async function saveCategory(event) {
     const name = $("category-name").value.trim();
     const parentId = $("category-parent").value || null;
 
-    if (!name) return;
+    if (!name || !currentStore) return;
 
     const payload = {
         store_id: currentStore,
@@ -673,9 +775,7 @@ async function saveCategory(event) {
         position: categoriesCache.length
     };
 
-    const { error } = await db
-        .from("categories")
-        .insert(payload);
+    const { error } = await db.from("categories").insert(payload);
 
     if (error) {
         showFormMessage("category-message", error.message, true);
@@ -692,7 +792,9 @@ async function saveCategory(event) {
     await loadCategories();
 }
 
-/* PEDIDOS */
+/* =====================================================
+   PEDIDOS
+===================================================== */
 
 async function loadOrders() {
     if (!currentStore) return;
@@ -709,6 +811,7 @@ async function loadOrders() {
     }
 
     ordersCache = data || [];
+
     renderOrders();
     renderRecentOrders();
     updateDashboardStats();
@@ -810,15 +913,13 @@ async function handleOrderChange(event) {
     const select = event.target.closest("[data-order-id]");
     if (!select) return;
 
-    const id = select.dataset.orderId;
-
     const { error } = await db
         .from("orders")
         .update({
             status: select.value,
             updated_at: new Date().toISOString()
         })
-        .eq("id", id)
+        .eq("id", select.dataset.orderId)
         .eq("store_id", currentStore);
 
     if (error) {
@@ -830,7 +931,9 @@ async function handleOrderChange(event) {
     await loadOrders();
 }
 
-/* PROMOCIONES */
+/* =====================================================
+   PROMOCIONES
+===================================================== */
 
 async function loadPromotions() {
     if (!currentStore) return;
@@ -851,7 +954,7 @@ async function loadPromotions() {
 
     if (!panel) return;
 
-    if (!data || !data.length) {
+    if (!data?.length) {
         panel.innerHTML = `
             <h2>Promociones de TROVA</h2>
             <p class="muted">
@@ -891,7 +994,9 @@ async function loadPromotions() {
     `;
 }
 
-/* RESUMEN */
+/* =====================================================
+   RESUMEN
+===================================================== */
 
 async function loadDashboard() {
     await Promise.all([
@@ -922,4 +1027,63 @@ function updateDashboardStats() {
     }
 }
 
-/* FIN DEL PANEL TROVA */
+/* =====================================================
+   TROVA | GESTIÓN DE USUARIOS
+   Requiere función segura en Supabase.
+===================================================== */
+
+async function manageStoreUser(action, payload = {}) {
+    if (!currentUser || !currentStore) {
+        throw new Error("No hay una sesión administrativa activa.");
+    }
+
+    if (!["owner", "admin"].includes(currentRole)) {
+        throw new Error(
+            "Solo el propietario o administrador puede gestionar usuarios."
+        );
+    }
+
+    const { data, error } = await db.functions.invoke(
+        "manage-store-users",
+        {
+            body: {
+                action,
+                store_id: currentStore,
+                ...payload
+            }
+        }
+    );
+
+    if (error) throw error;
+    if (data?.error) throw new Error(data.error);
+
+    return data;
+}
+
+async function addStoreUser(email, role) {
+    if (!email || !email.includes("@")) {
+        throw new Error("Introduce un correo válido.");
+    }
+
+    if (!["admin", "editor"].includes(role)) {
+        throw new Error("El permiso seleccionado no es válido.");
+    }
+
+    return manageStoreUser("create", { email, role });
+}
+
+async function removeStoreUser(userId) {
+    if (!userId) {
+        throw new Error("No se identificó el usuario.");
+    }
+
+    if (!confirm("¿Seguro que deseas quitar este usuario de TROVA?")) {
+        return;
+    }
+
+    return manageStoreUser("remove", { user_id: userId });
+}
+
+/* =====================================================
+   FIN DEL PANEL TROVA
+===================================================== */
