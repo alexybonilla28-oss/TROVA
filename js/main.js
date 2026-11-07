@@ -1,7 +1,7 @@
 
 /* =====================================================
    TROVA - SISTEMA PRINCIPAL
-   Productos, catálogo, filtros, carrito y WhatsApp
+   Supabase, catálogo, filtros, carrito y WhatsApp
 ===================================================== */
 
 const TROVA = {
@@ -11,253 +11,15 @@ const TROVA = {
 };
 
 /* =====================================================
-   PRODUCT DATABASE
+   DATABASE
 ===================================================== */
 
-const products = [
+const db = window.trovaSupabase;
 
-    {
-        id: 1,
-        name: "Audífonos inalámbricos Bluetooth",
-        category: "tecnologia",
-        subcategory: "audio",
-        audience: "todos",
-        price: 18.50,
-        oldPrice: 25,
-        tag: "MÁS SOLICITADO",
-        featured: true,
-        isNew: false,
-        offer: true,
-        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=wireless+bluetooth+headphones"
-    },
-    {
-        id: 2,
-        name: "Bolso elegante de dama",
-        category: "accesorios",
-        subcategory: "bolsos",
-        audience: "dama",
-        price: 24.99,
-        oldPrice: null,
-        tag: "DESTACADO",
-        featured: true,
-        isNew: false,
-        offer: false,
-        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=women+handbag"
-    },
-    {
-        id: 3,
-        name: "Tenis deportivos modernos",
-        category: "calzado",
-        subcategory: "deportivo",
-        audience: "caballero",
-        price: 39.99,
-        oldPrice: 49.99,
-        tag: "OFERTA",
-        featured: true,
-        isNew: false,
-        offer: true,
-        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=mens+sport+sneakers"
-    },
-    {
-        id: 4,
-        name: "Set de cuidado facial",
-        category: "belleza",
-        subcategory: "skincare",
-        audience: "todos",
-        price: 16.99,
-        oldPrice: null,
-        tag: "NOVEDAD",
-        featured: true,
-        isNew: true,
-        offer: false,
-        image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=skincare+set"
-    },
-    {
-        id: 5,
-        name: "Reloj de diseño clásico",
-        category: "accesorios",
-        subcategory: "relojes",
-        audience: "caballero",
-        price: 29.99,
-        oldPrice: null,
-        tag: "DESTACADO",
-        featured: true,
-        isNew: false,
-        offer: false,
-        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=classic+wrist+watch"
-    },
-    {
-        id: 6,
-        name: "Lámpara decorativa moderna",
-        category: "hogar",
-        subcategory: "decoracion",
-        audience: "todos",
-        price: 21.50,
-        oldPrice: 27.50,
-        tag: "OFERTA",
-        featured: false,
-        isNew: true,
-        offer: true,
-        image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=modern+decorative+lamp"
-    },
-    {
-        id: 7,
-        name: "Vestido casual de dama",
-        category: "ropa",
-        subcategory: "dama",
-        audience: "dama",
-        price: 22.99,
-        oldPrice: null,
-        tag: "NOVEDAD",
-        featured: false,
-        isNew: true,
-        offer: false,
-        image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=womens+casual+dress"
-    },
-    {
-        id: 8,
-        name: "Camiseta casual para caballero",
-        category: "ropa",
-        subcategory: "caballero",
-        audience: "caballero",
-        price: 14.99,
-        oldPrice: null,
-        tag: "",
-        featured: false,
-        isNew: false,
-        offer: false,
-        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=mens+casual+tshirt"
-    },
-    {
-        id: 9,
-        name: "Kit de bloques educativos",
-        category: "juguetes",
-        subcategory: "educativos",
-        audience: "ninos",
-        price: 19.99,
-        oldPrice: null,
-        tag: "FAMILIAR",
-        featured: false,
-        isNew: true,
-        offer: false,
-        image: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=educational+building+blocks"
-    },
-    {
-        id: 10,
-        name: "Mochila escolar infantil",
-        category: "juguetes",
-        subcategory: "infantil",
-        audience: "ninos",
-        price: 23.50,
-        oldPrice: null,
-        tag: "",
-        featured: false,
-        isNew: false,
-        offer: false,
-        image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=kids+school+backpack"
-    },
-    {
-        id: 11,
-        name: "Smartwatch deportivo",
-        category: "tecnologia",
-        subcategory: "gadgets",
-        audience: "todos",
-        price: 34.99,
-        oldPrice: 44.99,
-        tag: "OFERTA",
-        featured: false,
-        isNew: false,
-        offer: true,
-        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=sport+smartwatch"
-    },
-    {
-        id: 12,
-        name: "Set de pulseras minimalistas",
-        category: "accesorios",
-        subcategory: "joyeria",
-        audience: "dama",
-        price: 12.50,
-        oldPrice: null,
-        tag: "NOVEDAD",
-        featured: false,
-        isNew: true,
-        offer: false,
-        image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=minimalist+bracelets"
-    },
-    {
-        id: 13,
-        name: "Tenis casuales para dama",
-        category: "calzado",
-        subcategory: "dama",
-        audience: "dama",
-        price: 32.99,
-        oldPrice: null,
-        tag: "",
-        featured: false,
-        isNew: false,
-        offer: false,
-        image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=womens+casual+sneakers"
-    },
-    {
-        id: 14,
-        name: "Organizador multiusos para hogar",
-        category: "hogar",
-        subcategory: "organizacion",
-        audience: "todos",
-        price: 15.99,
-        oldPrice: 19.99,
-        tag: "OFERTA",
-        featured: false,
-        isNew: false,
-        offer: true,
-        image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=home+storage+organizer"
-    },
-    {
-        id: 15,
-        name: "Maquillaje compacto",
-        category: "belleza",
-        subcategory: "maquillaje",
-        audience: "todos",
-        price: 13.99,
-        oldPrice: null,
-        tag: "",
-        featured: false,
-        isNew: false,
-        offer: false,
-        image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=makeup+compact+set"
-    },
-    {
-        id: 16,
-        name: "Sandalias infantiles",
-        category: "calzado",
-        subcategory: "ninos",
-        audience: "ninos",
-        price: 17.99,
-        oldPrice: null,
-        tag: "",
-        featured: false,
-        isNew: false,
-        offer: false,
-        image: "https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=kids+sandals"
-    }
-];
-
+let products = [];
+let categories = [];
+let cart = [];
+let catalogInitialized = false;
 
 /* =====================================================
    UTILITIES
@@ -267,11 +29,11 @@ function money(value) {
     return new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: TROVA.currency
-    }).format(value);
+    }).format(Number(value) || 0);
 }
 
 function escapeHTML(value) {
-    return String(value).replace(/[&<>"']/g, character => ({
+    return String(value ?? "").replace(/[&<>"']/g, character => ({
         "&": "&amp;",
         "<": "&lt;",
         ">": "&gt;",
@@ -296,12 +58,158 @@ function showToast(message) {
 function safeExternalURL(value) {
     try {
         const url = new URL(value);
-        return ["https:", "http:"].includes(url.protocol) ? url.href : "";
+        return ["https:", "http:"].includes(url.protocol)
+            ? url.href
+            : "";
     } catch {
         return "";
     }
 }
 
+/* =====================================================
+   CATEGORY DATABASE
+===================================================== */
+
+const categoryNames = {
+    tecnologia: "Tecnología",
+    ropa: "Ropa",
+    calzado: "Calzado",
+    belleza: "Belleza",
+    accesorios: "Accesorios",
+    hogar: "Hogar y cocina",
+    juguetes: "Juguetes y niños"
+};
+
+const subcategoryNames = {
+    dama: "Dama",
+    caballero: "Caballero",
+    ninos: "Niños"
+};
+
+/*
+   Convierte los 16 slugs de TROVA
+   en categorías para los filtros del catálogo.
+*/
+
+function getCategoryInfo(categoryId) {
+    const category = categories.find(item => item.id === categoryId);
+
+    if (!category) {
+        return {
+            category: "",
+            subcategory: "",
+            audience: "todos",
+            label: "General"
+        };
+    }
+
+    const slug = category.slug;
+
+    const mappings = {
+        tecnologia: ["tecnologia", "", "todos"],
+        "ropa-dama": ["ropa", "dama", "dama"],
+        "accesorios-dama": ["accesorios", "dama", "dama"],
+        "calzado-dama": ["calzado", "dama", "dama"],
+        "ropa-caballero": ["ropa", "caballero", "caballero"],
+        belleza: ["belleza", "", "todos"],
+        "calzado-caballero": ["calzado", "caballero", "caballero"],
+        "accesorios-caballero": ["accesorios", "caballero", "caballero"],
+        ropa: ["ropa", "", "todos"],
+        "ropa-ninos": ["ropa", "ninos", "ninos"],
+        "accesorios-ninos": ["accesorios", "ninos", "ninos"],
+        "calzado-ninos": ["calzado", "ninos", "ninos"],
+        calzado: ["calzado", "", "todos"],
+        accesorios: ["accesorios", "", "todos"],
+        "juguetes-ninos": ["juguetes", "ninos", "ninos"],
+        "hogar-cocina": ["hogar", "", "todos"]
+    };
+
+    const info = mappings[slug] || ["", "", "todos"];
+
+    return {
+        category: info[0],
+        subcategory: info[1],
+        audience: info[2],
+        label: category.name
+    };
+}
+
+/* =====================================================
+   LOAD PRODUCTS AND CATEGORIES FROM SUPABASE
+===================================================== */
+
+async function loadStoreData() {
+    if (!db) {
+        console.error("TROVA: Supabase no está conectado.");
+        showToast("No se pudo conectar con la tienda.");
+        return;
+    }
+
+    try {
+        const [categoryResult, productResult] = await Promise.all([
+            db.from("categories")
+                .select("*")
+                .order("position", { ascending: true }),
+
+            db.from("products")
+                .select("*")
+                .eq("is_active", true)
+                .order("created_at", { ascending: false })
+        ]);
+
+        if (categoryResult.error) throw categoryResult.error;
+        if (productResult.error) throw productResult.error;
+
+        categories = categoryResult.data || [];
+
+        products = (productResult.data || []).map(product => {
+            const categoryInfo = getCategoryInfo(product.category_id);
+
+            let image = product.image_url || "";
+
+            if (!image && Array.isArray(product.images)) {
+                const firstImage = product.images[0];
+
+                image = typeof firstImage === "string"
+                    ? firstImage
+                    : firstImage?.url || "";
+            }
+
+            return {
+                id: String(product.id),
+                name: product.name || "Producto TROVA",
+                category: categoryInfo.category,
+                categoryLabel: categoryInfo.label,
+                subcategory: categoryInfo.subcategory,
+                audience: categoryInfo.audience,
+                price: Number(product.price) || 0,
+                oldPrice: product.compare_price
+                    ? Number(product.compare_price)
+                    : null,
+                tag: product.is_offer ? "OFERTA" : "",
+                featured: !!product.is_featured,
+                isNew: false,
+                offer: !!product.is_offer,
+                image,
+                url: product.external_url || "",
+                stock: Number(product.stock) || 0
+            };
+        });
+
+        console.log("TROVA: categorías cargadas:", categories.length);
+        console.log("TROVA: productos cargados:", products.length);
+
+        cart = loadCart();
+
+        renderHomeProducts();
+        renderCatalog();
+        renderCart();
+
+    } catch (error) {
+        console.error("TROVA: Error cargando información:", error);
+        showToast("No se pudieron cargar los productos.");
+    }
+}
 
 /* =====================================================
    PRODUCT CARDS
@@ -318,29 +226,45 @@ function productCard(product) {
 
     const safeURL = safeExternalURL(product.url);
 
+    const image = safeExternalURL(product.image);
+
     return `
         <article class="product-card">
             <div class="product-image-wrap">
                 ${tag}
-                <img class="product-image"
-                     src="${escapeHTML(product.image)}"
-                     alt="${escapeHTML(product.name)}"
-                     loading="lazy">
+
+                ${image
+                    ? `<img class="product-image"
+                        src="${escapeHTML(image)}"
+                        alt="${escapeHTML(product.name)}"
+                        loading="lazy">`
+                    : `<div class="product-image product-no-image">
+                        <span>TROVA</span>
+                    </div>`
+                }
             </div>
+
             <div class="product-info">
-                <p class="product-category">${escapeHTML(product.category)}</p>
+                <p class="product-category">
+                    ${escapeHTML(product.categoryLabel)}
+                </p>
+
                 <h3>${escapeHTML(product.name)}</h3>
+
                 <div class="product-price">
                     ${money(product.price)} ${oldPrice}
                 </div>
+
                 <div class="product-actions">
-                    <button class="add-cart" data-add-cart="${product.id}">
+                    <button class="add-cart"
+                        data-add-cart="${escapeHTML(product.id)}">
                         AGREGAR AL CARRITO
                     </button>
+
                     <a class="product-link"
-                       href="${safeURL || "#"}"
-                       ${safeURL ? 'target="_blank" rel="noopener"' : ""}
-                       aria-label="Ver referencia externa">↗</a>
+                        href="${safeURL || "#"}"
+                        ${safeURL ? 'target="_blank" rel="noopener noreferrer"' : ""}
+                        aria-label="Ver referencia externa">↗</a>
                 </div>
             </div>
         </article>
@@ -355,7 +279,6 @@ function renderProductList(elementId, list) {
         ? list.map(productCard).join("")
         : "";
 }
-
 
 /* =====================================================
    HOMEPAGE PRODUCTS
@@ -373,46 +296,9 @@ function renderHomeProducts() {
     );
 }
 
-
 /* =====================================================
    CATALOG FILTERS
 ===================================================== */
-
-const categoryNames = {
-    tecnologia: "Tecnología",
-    ropa: "Ropa y moda",
-    calzado: "Calzado",
-    belleza: "Belleza y cuidado personal",
-    accesorios: "Accesorios",
-    hogar: "Hogar y cocina",
-    juguetes: "Juguetes y niños"
-};
-
-const subcategoryNames = {
-    celulares: "Celulares y accesorios",
-    audio: "Audio y audífonos",
-    gadgets: "Gadgets",
-    computacion: "Computación",
-    dama: "Dama",
-    caballero: "Caballero",
-    ninos: "Niños",
-    deportivo: "Deportivo",
-    maquillaje: "Maquillaje",
-    skincare: "Skincare",
-    cabello: "Cuidado del cabello",
-    personal: "Cuidado personal",
-    joyeria: "Joyería",
-    bolsos: "Bolsos y carteras",
-    relojes: "Relojes y lentes",
-    cocina: "Cocina",
-    organizacion: "Organización",
-    decoracion: "Decoración",
-    iluminacion: "Iluminación",
-    juguetes: "Juguetes",
-    educativos: "Educativos",
-    papeleria: "Papelería",
-    infantil: "Accesorios infantiles"
-};
 
 const catalogState = {
     category: "",
@@ -430,10 +316,7 @@ function readCatalogURL() {
     catalogState.subcategory = params.get("subcategoria") || "";
     catalogState.offers = params.get("ofertas") === "1";
 
-    if (
-        catalogState.subcategory &&
-        ["dama", "caballero", "ninos"].includes(catalogState.subcategory)
-    ) {
+    if (["dama", "caballero", "ninos"].includes(catalogState.subcategory)) {
         catalogState.audience = catalogState.subcategory;
     }
 }
@@ -480,11 +363,16 @@ function updateCatalogHeading() {
     }
 
     heading.textContent = title;
-    breadcrumb.textContent = title.toUpperCase();
 
-    description.textContent = catalogState.category
-        ? "Explora nuestra selección de " + title.toLowerCase() + "."
-        : "Una selección para cada estilo y necesidad.";
+    if (breadcrumb) {
+        breadcrumb.textContent = title.toUpperCase();
+    }
+
+    if (description) {
+        description.textContent = catalogState.category
+            ? "Explora nuestra selección de " + title.toLowerCase() + "."
+            : "Una selección para cada estilo y necesidad.";
+    }
 
     const filter = document.getElementById("audienceFilter");
 
@@ -510,7 +398,7 @@ function updateCatalogHeading() {
         link.classList.toggle(
             "active",
             link.dataset.category === catalogState.category &&
-            link.dataset.subcategory === catalogState.subcategory
+            (link.dataset.subcategory || "") === catalogState.subcategory
         );
     });
 }
@@ -549,6 +437,7 @@ function getFilteredProducts() {
         result = result.filter(product =>
             (
                 product.name + " " +
+                product.categoryLabel + " " +
                 product.category + " " +
                 product.subcategory
             ).toLowerCase().includes(search)
@@ -585,28 +474,37 @@ function renderCatalog() {
     const noProducts = document.getElementById("noProducts");
     const count = document.getElementById("resultsCount");
 
-    noProducts.hidden = result.length !== 0;
+    if (noProducts) {
+        noProducts.hidden = result.length !== 0;
+    }
 
-    count.textContent =
-        result.length + (result.length === 1 ? " producto encontrado" : " productos encontrados");
+    if (count) {
+        count.textContent = result.length +
+            (result.length === 1
+                ? " producto encontrado"
+                : " productos encontrados");
+    }
 
     updateCatalogHeading();
 }
 
 function initializeCatalog() {
+    if (catalogInitialized) return;
     if (!document.getElementById("catalogProducts")) return;
+
+    catalogInitialized = true;
 
     readCatalogURL();
 
     const search = document.getElementById("catalogSearch");
     const sort = document.getElementById("sortProducts");
 
-    search.addEventListener("input", () => {
+    search?.addEventListener("input", () => {
         catalogState.search = search.value.trim();
         renderCatalog();
     });
 
-    sort.addEventListener("change", () => {
+    sort?.addEventListener("change", () => {
         catalogState.sort = sort.value;
         renderCatalog();
     });
@@ -615,8 +513,8 @@ function initializeCatalog() {
         link.addEventListener("click", event => {
             event.preventDefault();
 
-            catalogState.category = link.dataset.category;
-            catalogState.subcategory = link.dataset.subcategory;
+            catalogState.category = link.dataset.category || "";
+            catalogState.subcategory = link.dataset.subcategory || "";
             catalogState.audience = "todos";
             catalogState.offers = false;
 
@@ -640,38 +538,36 @@ function initializeCatalog() {
         link.addEventListener("click", event => {
             event.preventDefault();
 
-            Object.assign(catalogState, {
-                category: "",
-                subcategory: "",
-                audience: "todos",
-                search: "",
-                sort: "featured",
-                offers: false
-            });
-
-            search.value = "";
-            sort.value = "featured";
-
-            updateCatalogURL();
-            renderCatalog();
+            resetCatalog();
         });
     });
 
-    document.getElementById("clearSearch").addEventListener("click", () => {
-        search.value = "";
-        catalogState.search = "";
-        catalogState.category = "";
-        catalogState.subcategory = "";
-        catalogState.audience = "todos";
-        catalogState.offers = false;
-
-        updateCatalogURL();
-        renderCatalog();
+    document.getElementById("clearSearch")?.addEventListener("click", () => {
+        resetCatalog();
     });
 
     renderCatalog();
 }
 
+function resetCatalog() {
+    Object.assign(catalogState, {
+        category: "",
+        subcategory: "",
+        audience: "todos",
+        search: "",
+        sort: "featured",
+        offers: false
+    });
+
+    const search = document.getElementById("catalogSearch");
+    const sort = document.getElementById("sortProducts");
+
+    if (search) search.value = "";
+    if (sort) sort.value = "featured";
+
+    updateCatalogURL();
+    renderCatalog();
+}
 
 /* =====================================================
    CART STORAGE
@@ -683,19 +579,23 @@ function loadCart() {
             localStorage.getItem(TROVA.storageKey) || "[]"
         );
 
-        return Array.isArray(saved)
-            ? saved.filter(item =>
-                products.some(product => product.id === item.id) &&
-                Number.isInteger(item.quantity) &&
-                item.quantity > 0
+        if (!Array.isArray(saved)) return [];
+
+        return saved
+            .filter(item =>
+                products.some(product => product.id === String(item.id)) &&
+                Number.isInteger(Number(item.quantity)) &&
+                Number(item.quantity) > 0
             )
-            : [];
+            .map(item => ({
+                id: String(item.id),
+                quantity: Number(item.quantity)
+            }));
+
     } catch {
         return [];
     }
 }
-
-let cart = loadCart();
 
 function saveCart() {
     localStorage.setItem(TROVA.storageKey, JSON.stringify(cart));
@@ -703,10 +603,10 @@ function saveCart() {
 }
 
 function addToCart(id) {
-    const product = products.find(item => item.id === id);
+    const product = products.find(item => item.id === String(id));
     if (!product) return;
 
-    const existing = cart.find(item => item.id === id);
+    const existing = cart.find(item => item.id === product.id);
 
     if (existing) {
         existing.quantity++;
@@ -722,20 +622,20 @@ function addToCart(id) {
 }
 
 function changeQuantity(id, amount) {
-    const item = cart.find(product => product.id === id);
+    const item = cart.find(product => product.id === String(id));
     if (!item) return;
 
     item.quantity += amount;
 
     if (item.quantity <= 0) {
-        cart = cart.filter(product => product.id !== id);
+        cart = cart.filter(product => product.id !== String(id));
     }
 
     saveCart();
 }
 
 function removeFromCart(id) {
-    cart = cart.filter(item => item.id !== id);
+    cart = cart.filter(item => item.id !== String(id));
     saveCart();
 }
 
@@ -746,6 +646,7 @@ function cartCount() {
 function cartSubtotal() {
     return cart.reduce((total, item) => {
         const product = products.find(product => product.id === item.id);
+
         return total + (product ? product.price * item.quantity : 0);
     }, 0);
 }
@@ -767,7 +668,9 @@ function renderCart() {
         itemsContainer.innerHTML = `
             <div class="cart-empty">
                 <p style="font-size:35px;margin-bottom:15px">♧</p>
-                <h3 style="font-family:Georgia;margin-bottom:8px">Tu carrito está vacío</h3>
+                <h3 style="font-family:Georgia;margin-bottom:8px">
+                    Tu carrito está vacío
+                </h3>
                 <p>Explora TROVA y agrega tus productos favoritos.</p>
             </div>
         `;
@@ -778,27 +681,38 @@ function renderCart() {
         const product = products.find(product => product.id === item.id);
         if (!product) return "";
 
+        const image = safeExternalURL(product.image);
+
         return `
             <article class="cart-item">
-                <img src="${escapeHTML(product.image)}" alt="${escapeHTML(product.name)}">
+                ${image
+                    ? `<img src="${escapeHTML(image)}"
+                        alt="${escapeHTML(product.name)}">`
+                    : ""
+                }
 
                 <div>
                     <h4>${escapeHTML(product.name)}</h4>
                     <p>${money(product.price)}</p>
 
                     <div class="cart-quantity">
-                        <button data-quantity="${product.id}" data-change="-1">−</button>
+                        <button data-quantity="${escapeHTML(product.id)}"
+                            data-change="-1">−</button>
+
                         <span>${item.quantity}</span>
-                        <button data-quantity="${product.id}" data-change="1">+</button>
+
+                        <button data-quantity="${escapeHTML(product.id)}"
+                            data-change="1">+</button>
                     </div>
                 </div>
 
-                <button class="cart-remove" data-remove="${product.id}" aria-label="Eliminar producto">×</button>
+                <button class="cart-remove"
+                    data-remove="${escapeHTML(product.id)}"
+                    aria-label="Eliminar producto">×</button>
             </article>
         `;
     }).join("");
 }
-
 
 /* =====================================================
    CART EVENTS
@@ -821,21 +735,21 @@ function initializeCart() {
     document.getElementById("closeCart")?.addEventListener("click", closeCart);
     document.getElementById("cartOverlay")?.addEventListener("click", closeCart);
 
-    document.getElementById("checkoutButton")?.addEventListener("click", checkoutWhatsApp);
+    document.getElementById("checkoutButton")
+        ?.addEventListener("click", checkoutWhatsApp);
 
     document.addEventListener("click", event => {
-
         const addButton = event.target.closest("[data-add-cart]");
 
         if (addButton) {
-            addToCart(Number(addButton.dataset.addCart));
+            addToCart(addButton.dataset.addCart);
         }
 
         const quantityButton = event.target.closest("[data-quantity]");
 
         if (quantityButton) {
             changeQuantity(
-                Number(quantityButton.dataset.quantity),
+                quantityButton.dataset.quantity,
                 Number(quantityButton.dataset.change)
             );
         }
@@ -843,15 +757,14 @@ function initializeCart() {
         const removeButton = event.target.closest("[data-remove]");
 
         if (removeButton) {
-            removeFromCart(Number(removeButton.dataset.remove));
+            removeFromCart(removeButton.dataset.remove);
             showToast("Producto eliminado.");
         }
     });
 }
 
-
 /* =====================================================
-   WHATSAPP ORDER - FORMATO PROFESIONAL
+   WHATSAPP ORDER
 ===================================================== */
 
 function checkoutWhatsApp() {
@@ -919,7 +832,7 @@ function checkoutWhatsApp() {
 
         if (!product) return "";
 
-        return `- ${product.name} | Cantidad: ${item.quantity} | Subtotal: ${money(product.price * item.quantity)}`;
+        return `- ${product.name} | Cantidad: ${item.quantity} | Precio unitario: ${money(product.price)} | Subtotal: ${money(product.price * item.quantity)}`;
     }).filter(Boolean);
 
     const message = [
@@ -930,25 +843,27 @@ function checkoutWhatsApp() {
         `Teléfono: ${customerPhone}`,
         `Ciudad: ${customerCity}`,
         "",
-        "PRODUCTOS",
+        "PRODUCTOS SOLICITADOS",
         ...lines,
         "",
-        "RESUMEN",
+        "RESUMEN DE COMPRA",
         `Total estimado: ${money(subtotal)}`,
         "Modalidad de pago: 50% anticipo y 50% contra entrega",
         `Anticipo estimado: ${money(deposit)}`,
         `Saldo estimado: ${money(balance)}`,
         "",
-        "ENTREGA",
+        "INFORMACIÓN DE ENTREGA",
         `Modalidad: ${deliveryMode === "domicilio" ? "Domicilio" : "Punto de entrega"}`,
         `Dirección o punto: ${deliveryAddress}`,
         "",
         "OBSERVACIONES",
         observations,
         "",
-        "IMPORTANTE:",
+        "IMPORTANTE",
         "Los precios y la disponibilidad deben ser confirmados por TROVA.",
-        "Esta solicitud no representa una compra confirmada."
+        "Esta solicitud no representa una compra confirmada.",
+        "",
+        "¡Gracias por elegir TROVA!"
     ].join("\n");
 
     const whatsappURL =
@@ -958,14 +873,12 @@ function checkoutWhatsApp() {
     window.open(whatsappURL, "_blank", "noopener");
 }
 
-
 /* =====================================================
-   EXTERNAL PRODUCT REQUEST - FORMATO PROFESIONAL
+   EXTERNAL PRODUCT REQUEST
 ===================================================== */
 
 function initializeExternalRequest() {
     const form = document.getElementById("externalProductForm");
-
     if (!form) return;
 
     form.addEventListener("submit", event => {
@@ -986,7 +899,9 @@ function initializeExternalRequest() {
                 ? quantityValue
                 : 1;
 
-        if (!name || !safeExternalURL(link)) {
+        const safeLink = safeExternalURL(link);
+
+        if (!name || !safeLink) {
             showToast("Revisa el nombre y el enlace del producto.");
             return;
         }
@@ -996,12 +911,14 @@ function initializeExternalRequest() {
             "",
             `Producto: ${name}`,
             `Cantidad: ${quantity}`,
-            `Enlace: ${link}`,
+            `Enlace: ${safeLink}`,
             "",
             "Comentarios:",
             details || "Sin comentarios",
             "",
-            "Solicito información sobre disponibilidad y precio."
+            "Solicito información sobre disponibilidad y precio.",
+            "",
+            "¡Gracias por su atención!"
         ].join("\n");
 
         const whatsappURL =
@@ -1011,7 +928,6 @@ function initializeExternalRequest() {
         window.open(whatsappURL, "_blank", "noopener");
     });
 }
-
 
 /* =====================================================
    MOBILE NAVIGATION
@@ -1032,28 +948,41 @@ function initializeNavigation() {
     });
 }
 
+/* =====================================================
+   MOBILE FILTERS
+===================================================== */
+
 function closeMobileFilters() {
-    document.getElementById("catalogSidebar")?.classList.remove("mobile-open");
+    document.getElementById("catalogSidebar")
+        ?.classList.remove("mobile-open");
 }
 
 function initializeMobileFilters() {
-    document.getElementById("mobileFilterToggle")?.addEventListener("click", () => {
-        document.getElementById("catalogSidebar")?.classList.add("mobile-open");
-    });
+    document.getElementById("mobileFilterToggle")
+        ?.addEventListener("click", () => {
+            document.getElementById("catalogSidebar")
+                ?.classList.add("mobile-open");
+        });
 
-    document.getElementById("closeFilters")?.addEventListener("click", closeMobileFilters);
+    document.getElementById("closeFilters")
+        ?.addEventListener("click", closeMobileFilters);
 }
-
 
 /* =====================================================
    INITIALIZE EVERYTHING
 ===================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
-    renderHomeProducts();
+document.addEventListener("DOMContentLoaded", async () => {
     initializeCatalog();
     initializeCart();
     initializeExternalRequest();
     initializeNavigation();
     initializeMobileFilters();
+
+    await loadStoreData();
+
+    // Actualiza el catálogo después de cargar Supabase.
+    renderHomeProducts();
+    renderCatalog();
+    renderCart();
 });
