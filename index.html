@@ -1,330 +1,269 @@
 
-
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>TROVA | Tus deseos, a un pedido de distancia.</title>
-
-    <meta name="description" content="TROVA hace realidad tus compras por encargo. Encuentra lo que deseas y nosotros te ayudamos a conseguirlo.">
-
-    <meta name="theme-color" content="#171717">
-
+    <title>TROVA | Tus deseos, a un pedido de distancia</title>
+    <meta name="description" content="Encuentra tus productos favoritos y solicita tus compras por encargo con TROVA.">
+    <meta name="theme-color" content="#171714">
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- SISTEMA PRINCIPAL -->
     <script src="js/main.js" defer></script>
-
-    <!-- SOLICITUDES DE PRODUCTOS EXTERNOS -->
-    <script src="js/solicitud-externa.js" defer></script>
 </head>
-
 <body>
 
-    <!-- ENCABEZADO -->
-    <header class="encabezado">
+<header class="site-header">
+    <a href="index.html" class="brand">
+        <img src="assets/logos/logo-horizontal.jpeg" alt="TROVA">
+    </a>
 
-        <div class="contenedor encabezado-contenido">
+    <nav class="main-nav" aria-label="Navegación principal">
+        <a href="index.html" class="nav-home">Inicio</a>
+        <div class="nav-dropdown">
+            <a href="catalogo.html" class="nav-dropdown-trigger">Catálogo <span>⌄</span></a>
+            <div class="nav-dropdown-menu">
+                <div class="dropdown-heading">EXPLORA TROVA</div>
+                <a href="catalogo.html?categoria=tecnologia">Tecnología</a>
+                <a href="catalogo.html?categoria=ropa">Ropa</a>
+                <a href="catalogo.html?categoria=calzado">Calzado</a>
+                <a href="catalogo.html?categoria=belleza">Belleza y cuidado</a>
+                <a href="catalogo.html?categoria=accesorios">Accesorios</a>
+                <a href="catalogo.html?categoria=hogar">Hogar y cocina</a>
+                <a href="catalogo.html?categoria=juguetes">Juguetes y niños</a>
+                <a class="dropdown-highlight" href="catalogo.html?ofertas=1">Ofertas especiales ↗</a>
+            </div>
+        </div>
+        <a href="catalogo.html?ofertas=1">Promociones</a>
+        <a href="index.html#como-funciona">Cómo funciona</a>
+        <a href="index.html#solicitar">Solicitar producto</a>
+    </nav>
 
-            <a href="#inicio" class="logo">
-                <img
-                    class="logo-imagen"
-                    src="assets/logos/logo-horizontal.jpeg"
-                    alt="TROVA"
-                >
+    <div class="header-tools">
+        <button class="icon-button" id="openCart" aria-label="Abrir carrito">
+            ♧ <span class="cart-counter" id="cartCounter">0</span>
+        </button>
+        <a href="catalogo.html" class="header-cta">Explorar tienda</a>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir menú">☰</button>
+    </div>
+</header>
+
+<main>
+
+    <section class="hero">
+        <div class="hero-image"></div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content container">
+            <p class="eyebrow light">BIENVENIDO A TROVA</p>
+            <h1>Lo que deseas.<br><span>Más cerca de ti.</span></h1>
+            <p class="hero-description">
+                Descubre, elige y solicita. Nosotros te ayudamos
+                a conseguir esos productos que tanto quieres.
+            </p>
+            <div class="hero-actions">
+                <a href="catalogo.html" class="btn btn-gold">EXPLORAR CATÁLOGO <span>↗</span></a>
+                <a href="#como-funciona" class="btn btn-outline-light">CONOCE TROVA</a>
+            </div>
+            <div class="hero-note">COMPRAS POR ENCARGO · UNA EXPERIENCIA MÁS SENCILLA</div>
+        </div>
+
+        <div class="hero-index">01 / TROVA</div>
+    </section>
+
+    <section class="benefit-strip">
+        <div><span>✦</span> Productos seleccionados</div>
+        <div><span>✦</span> Pedidos personalizados</div>
+        <div><span>✦</span> Atención por WhatsApp</div>
+        <div><span>✦</span> Compras por encargo</div>
+    </section>
+
+    <section class="section container" id="categorias">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">ENCUENTRA LO QUE BUSCAS</p>
+                <h2>Explora nuestras <em>categorías.</em></h2>
+            </div>
+            <a href="catalogo.html" class="text-link">VER TODO EL CATÁLOGO ↗</a>
+        </div>
+
+        <div class="category-grid">
+            <a class="category-tile category-tech" href="catalogo.html?categoria=tecnologia">
+                <div><span>01</span><h3>Tecnología</h3><p>Innovación para tu día a día.</p></div>
+                <b>↗</b>
             </a>
-
-            <nav class="navegacion">
-
-                <a href="#inicio">INICIO</a>
-
-                <a href="#categorias">CATEGORÍAS</a>
-
-                <a href="#productos">PRODUCTOS</a>
-
-                <a href="#como-funciona">CÓMO FUNCIONA</a>
-
-                <a href="#solicitar-producto">SOLICITAR PRODUCTO</a>
-
-                <a href="#contacto">CONTACTO</a>
-
-            </nav>
-
+            <a class="category-tile category-fashion" href="catalogo.html?categoria=ropa">
+                <div><span>02</span><h3>Ropa y moda</h3><p>Encuentra tu propio estilo.</p></div>
+                <b>↗</b>
+            </a>
+            <a class="category-tile category-shoes" href="catalogo.html?categoria=calzado">
+                <div><span>03</span><h3>Calzado</h3><p>Un paso adelante.</p></div>
+                <b>↗</b>
+            </a>
+            <a class="category-tile category-beauty" href="catalogo.html?categoria=belleza">
+                <div><span>04</span><h3>Belleza</h3><p>Detalles para cuidarte.</p></div>
+                <b>↗</b>
+            </a>
+            <a class="category-tile category-accessories" href="catalogo.html?categoria=accesorios">
+                <div><span>05</span><h3>Accesorios</h3><p>El toque que te distingue.</p></div>
+                <b>↗</b>
+            </a>
+            <a class="category-tile category-home" href="catalogo.html?categoria=hogar">
+                <div><span>06</span><h3>Hogar y cocina</h3><p>Ideas para tus espacios.</p></div>
+                <b>↗</b>
+            </a>
+            <a class="category-tile category-kids" href="catalogo.html?categoria=juguetes">
+                <div><span>07</span><h3>Juguetes y niños</h3><p>Imaginación y diversión.</p></div>
+                <b>↗</b>
+            </a>
         </div>
+    </section>
 
-    </header>
-
-
-    <main>
-
-        <!-- PORTADA PRINCIPAL -->
-        <section class="portada" id="inicio">
-
-            <div class="contenedor">
-
-                <div class="portada-contenido">
-
-                    <p class="portada-etiqueta">
-                        BIENVENIDO A TROVA
-                    </p>
-
-                    <h1>
-                        Tus deseos,<br>
-                        a un pedido de <span>distancia.</span>
-                    </h1>
-
-                    <p class="portada-descripcion">
-                        Descubre una nueva forma de comprar.
-                        Encuentra los productos que deseas y
-                        nosotros te ayudamos a conseguirlos.
-                    </p>
-
-                    <div class="portada-botones">
-
-                        <a href="#categorias" class="boton boton-dorado">
-                            EXPLORAR CATÁLOGO
-                        </a>
-
-                        <a href="#como-funciona" class="boton boton-contorno">
-                            CÓMO FUNCIONA
-                        </a>
-
-                    </div>
-
+    <section class="featured-section">
+        <div class="container">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">UNA SELECCIÓN ESPECIAL</p>
+                    <h2>Favoritos de <em>TROVA.</em></h2>
                 </div>
-
+                <a href="catalogo.html" class="text-link">DESCUBRIR MÁS ↗</a>
             </div>
-
-        </section>
-
-
-        <!-- CATEGORÍAS -->
-        <section class="seccion seccion-crema" id="categorias">
-
-            <div class="contenedor">
-
-                <p class="etiqueta-seccion">
-                    DESCUBRE TROVA
-                </p>
-
-                <h2 class="titulo-seccion">
-                    Encuentra lo que buscas
-                </h2>
-
-                <p class="subtitulo-seccion">
-                    Explora nuestras categorías y descubre
-                    productos que pueden convertirse en tus favoritos.
-                </p>
-
-                <div class="categorias-contenido">
-
-                    <a href="catalogo.html?categoria=tecnologia" class="categoria-card">
-                        <span class="categoria-numero">01</span>
-                        <h3>Tecnología</h3>
-                        <p>Innovación para tu día a día.</p>
-                    </a>
-
-                    <a href="catalogo.html?categoria=belleza" class="categoria-card">
-                        <span class="categoria-numero">02</span>
-                        <h3>Belleza</h3>
-                        <p>Detalles para cuidar de ti.</p>
-                    </a>
-
-                    <a href="catalogo.html?categoria=moda" class="categoria-card">
-                        <span class="categoria-numero">03</span>
-                        <h3>Moda y accesorios</h3>
-                        <p>Encuentra tu propio estilo.</p>
-                    </a>
-
-                    <a href="catalogo.html?categoria=hogar" class="categoria-card">
-                        <span class="categoria-numero">04</span>
-                        <h3>Hogar y cocina</h3>
-                        <p>Ideas para tus espacios.</p>
-                    </a>
-
-                    <a href="catalogo.html?categoria=deportes" class="categoria-card">
-                        <span class="categoria-numero">05</span>
-                        <h3>Deportes y fitness</h3>
-                        <p>Equipa tus actividades.</p>
-                    </a>
-
-                    <a href="catalogo.html?categoria=mascotas" class="categoria-card">
-                        <span class="categoria-numero">06</span>
-                        <h3>Mascotas</h3>
-                        <p>Para quienes son parte de tu familia.</p>
-                    </a>
-
-                    <a href="catalogo.html?categoria=juguetes" class="categoria-card">
-                        <span class="categoria-numero">07</span>
-                        <h3>Juguetes y papelería</h3>
-                        <p>Creatividad y diversión.</p>
-                    </a>
-
-                    <a href="catalogo.html?categoria=vehiculos" class="categoria-card">
-                        <span class="categoria-numero">08</span>
-                        <h3>Accesorios para vehículos</h3>
-                        <p>Complementos para tu vehículo.</p>
-                    </a>
-
-                    <a href="catalogo.html?categoria=ofertas" class="categoria-card">
-                        <span class="categoria-numero">09</span>
-                        <h3>Ofertas</h3>
-                        <p>Descubre oportunidades especiales.</p>
-                    </a>
-
-                    <a href="catalogo.html?categoria=novedades" class="categoria-card">
-                        <span class="categoria-numero">10</span>
-                        <h3>Novedades</h3>
-                        <p>Descubre lo nuevo de TROVA.</p>
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- PRODUCTOS DESTACADOS -->
-        <section class="seccion" id="productos">
-
-            <div class="contenedor">
-
-                <p class="etiqueta-seccion">
-                    NUESTRA SELECCIÓN
-                </p>
-
-                <h2 class="titulo-seccion">
-                    Selección TROVA
-                </h2>
-
-                <p class="subtitulo-seccion">
-                    Descubre productos seleccionados para encontrar
-                    eso que tanto deseas.
-                </p>
-
-                <div class="productos-contenido"></div>
-
-            </div>
-
-        </section>
-
-
-        <!-- OFERTAS -->
-        <section class="seccion seccion-crema" id="ofertas">
-
-            <div class="contenedor">
-
-                <p class="etiqueta-seccion">
-                    OPORTUNIDADES ESPECIALES
-                </p>
-
-                <h2 class="titulo-seccion">
-                    Ofertas especiales
-                </h2>
-
-                <p class="subtitulo-seccion">
-                    Encuentra oportunidades y productos especiales
-                    en nuestro catálogo.
-                </p>
-
-                <div class="ofertas-contenido"></div>
-
-            </div>
-
-        </section>
-
-
-        <!-- CÓMO FUNCIONA -->
-        <section class="seccion" id="como-funciona">
-
-            <div class="contenedor">
-
-                <p class="etiqueta-seccion">
-                    COMPRA FÁCIL CON TROVA
-                </p>
-
-                <h2 class="titulo-seccion">
-                    Comprar nunca fue tan sencillo
-                </h2>
-
-                <p class="subtitulo-seccion">
-                    En TROVA te acompañamos durante el proceso
-                    para que puedas realizar tus pedidos fácilmente.
-                </p>
-
-                <div class="proceso-contenido"></div>
-
-            </div>
-
-        </section>
-
-
-        <!-- CONTACTO -->
-        <section class="seccion seccion-crema" id="contacto">
-
-            <div class="contenedor">
-
-                <p class="etiqueta-seccion">
-                    ESTAMOS PARA AYUDARTE
-                </p>
-
-                <h2 class="titulo-seccion">
-                    ¿Buscas algo especial?
-                </h2>
-
-                <p class="subtitulo-seccion">
-                    Si no encuentras lo que deseas, podemos ayudarte
-                    a solicitarlo.
-                </p>
-
-                <div class="contacto-contenido"></div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- PIE DE PÁGINA -->
-    <footer class="pie-pagina">
-
-        <div class="contenedor">
-
-            <div class="pie-logo">
-
-                <img
-                    src="assets/logos/logo-secundario.jpeg"
-                    alt="TROVA"
-                >
-
-            </div>
-
-            <p>
-                Compras por encargo, hechas más sencillas.
-            </p>
-
-            <p class="eslogan">
-                Tus deseos, a un pedido de distancia.
-            </p>
-
-            <p class="aviso-comercial">
-                TROVA es un servicio independiente de compras por encargo.
-                No somos una tienda oficial ni estamos afiliados a Temu.
-            </p>
-
-            <p class="derechos">
-                © 2026 TROVA. Todos los derechos reservados.
-            </p>
-
+            <div class="product-grid" id="featuredProducts"></div>
         </div>
+    </section>
 
-    </footer>
+    <section class="promo-section">
+        <div class="promo-copy">
+            <p class="eyebrow light">OPORTUNIDADES ESPECIALES</p>
+            <h2>Algo que deseas<br><em>a un mejor precio.</em></h2>
+            <p>Explora nuestra selección de ofertas y encuentra nuevas oportunidades.</p>
+            <a href="catalogo.html?ofertas=1" class="btn btn-gold">VER OFERTAS ↗</a>
+        </div>
+        <div class="promo-art">
+            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=85"
+                 alt="Selección especial de productos TROVA" loading="lazy">
+            <div class="promo-art-overlay"></div>
+            <span class="promo-symbol">T</span>
+            <span class="promo-caption">TROVA · SELECCIÓN ESPECIAL</span>
+            <span class="promo-stamp">OFERTAS<br>EXCLUSIVAS</span>
+        </div>
+    </section>
+
+    <section class="section container">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">LO RECIÉN LLEGADO</p>
+                <h2>Nuevas <em>posibilidades.</em></h2>
+            </div>
+            <a href="catalogo.html" class="text-link">VER CATÁLOGO ↗</a>
+        </div>
+        <div class="product-grid" id="newProducts"></div>
+    </section>
+
+    <section class="how-section" id="como-funciona">
+        <div class="container">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow light">TU COMPRA, PASO A PASO</p>
+                    <h2>Así de sencillo es <em>comprar.</em></h2>
+                </div>
+            </div>
+            <div class="steps-grid">
+                <article class="step-card">
+                    <span>01</span><div class="step-icon">⌕</div>
+                    <h3>Descubre</h3>
+                    <p>Explora nuestro catálogo y encuentra los productos que te interesan.</p>
+                </article>
+                <article class="step-card">
+                    <span>02</span><div class="step-icon">＋</div>
+                    <h3>Selecciona</h3>
+                    <p>Agrega tus productos al carrito o solicita algo que encontraste en otra página.</p>
+                </article>
+                <article class="step-card">
+                    <span>03</span><div class="step-icon">▤</div>
+                    <h3>Confirma</h3>
+                    <p>Revisa los detalles de tu solicitud y envíanos tu pedido.</p>
+                </article>
+                <article class="step-card">
+                    <span>04</span><div class="step-icon">↗</div>
+                    <h3>Concreta</h3>
+                    <p>Nos comunicaremos contigo por WhatsApp para coordinar tu compra.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="request-section" id="solicitar">
+        <div class="container request-layout">
+            <div class="request-copy">
+                <p class="eyebrow">¿NO ENCUENTRAS LO QUE BUSCAS?</p>
+                <h2>Lo viste en otra página.<br><em>Nosotros te ayudamos.</em></h2>
+                <p>
+                    Comparte el enlace del producto que deseas y envíanos
+                    tu solicitud. Revisaremos la información contigo.
+                </p>
+                <div class="request-note">✦ Puedes compartir enlaces de tiendas y páginas externas.</div>
+            </div>
+
+            <form class="request-form" id="externalProductForm">
+                <label for="externalName">Nombre del producto</label>
+                <input id="externalName" name="product" type="text" placeholder="Ej. Audífonos inalámbricos" required>
+
+                <label for="externalLink">Enlace del producto</label>
+                <input id="externalLink" name="link" type="url" placeholder="https://..." required>
+
+                <label for="externalDetails">Detalles adicionales (opcional)</label>
+                <textarea id="externalDetails" name="details" rows="3" placeholder="Color, talla, modelo o cualquier detalle..."></textarea>
+
+                <button class="btn btn-dark btn-full" type="submit">SOLICITAR ESTE PRODUCTO ↗</button>
+                <small>Tu solicitud se enviará directamente a nuestro WhatsApp.</small>
+            </form>
+        </div>
+    </section>
+
+    <section class="contact-band" id="contacto">
+        <div class="container contact-band-inner">
+            <div>
+                <p class="eyebrow light">ESTAMOS PARA AYUDARTE</p>
+                <h2>¿Tienes alguna consulta?</h2>
+                <p>Comunícate con TROVA y conversemos sobre lo que buscas.</p>
+            </div>
+            <a class="btn btn-gold" href="https://wa.me/50370609793" target="_blank" rel="noopener">CONTACTAR POR WHATSAPP ↗</a>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-main">
+        <div>
+            <img src="assets/logos/logo-horizontal.jpeg" alt="TROVA" class="footer-logo">
+            <p>Tus deseos, a un pedido de distancia.</p>
+        </div>
+        <div><h4>EXPLORA</h4><a href="catalogo.html">Catálogo</a><a href="#categorias">Categorías</a><a href="#como-funciona">Cómo funciona</a></div>
+        <div><h4>ATENCIÓN</h4><a href="#solicitar">Solicitar producto</a><a href="#contacto">Contacto</a><a href="https://wa.me/50370609793" target="_blank" rel="noopener">WhatsApp</a></div>
+    </div>
+    <div class="container footer-bottom">
+        <span>© 2026 TROVA. Todos los derechos reservados.</span>
+        <span>Servicio independiente de compras por encargo. No somos una tienda oficial ni estamos afiliados a otras marcas.</span>
+    </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Carrito de compras">
+    <div class="cart-header">
+        <div><p class="eyebrow">TU SELECCIÓN</p><h2>Mi carrito</h2></div>
+        <button class="close-cart" id="closeCart" aria-label="Cerrar carrito">×</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+        <div class="cart-total"><span>Subtotal referencial</span><strong id="cartTotal">$0.00</strong></div>
+        <p>El precio final y la disponibilidad se confirmarán contigo.</p>
+        <button class="btn btn-gold btn-full" id="checkoutButton">ENVIAR PEDIDO POR WHATSAPP ↗</button>
+    </div>
+</aside>
+
+<div class="toast" id="toast" role="status"></div>
 
 </body>
-
 </html>

@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo | TROVA</title>
+    <meta name="description" content="Explora todos los productos disponibles en TROVA.">
+    <meta name="theme-color" content="#171714">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body class="catalog-page">
+
+<header class="site-header">
+    <a href="index.html" class="brand">
+        <img src="assets/logos/logo-horizontal.jpeg" alt="TROVA">
+    </a>
+
+    <nav class="main-nav" aria-label="Navegación principal">
+        <a href="index.html" class="nav-home">Inicio</a>
+        <div class="nav-dropdown">
+            <a href="catalogo.html" class="nav-dropdown-trigger">Catálogo <span>⌄</span></a>
+            <div class="nav-dropdown-menu">
+                <div class="dropdown-heading">EXPLORA TROVA</div>
+                <a href="catalogo.html?categoria=tecnologia">Tecnología</a>
+                <a href="catalogo.html?categoria=ropa">Ropa</a>
+                <a href="catalogo.html?categoria=calzado">Calzado</a>
+                <a href="catalogo.html?categoria=belleza">Belleza y cuidado</a>
+                <a href="catalogo.html?categoria=accesorios">Accesorios</a>
+                <a href="catalogo.html?categoria=hogar">Hogar y cocina</a>
+                <a href="catalogo.html?categoria=juguetes">Juguetes y niños</a>
+                <a class="dropdown-highlight" href="catalogo.html?ofertas=1">Ofertas especiales ↗</a>
+            </div>
+        </div>
+        <a href="catalogo.html?ofertas=1">Promociones</a>
+        <a href="index.html#como-funciona">Cómo funciona</a>
+        <a href="index.html#solicitar">Solicitar producto</a>
+    </nav>
+
+    <div class="header-tools">
+        <button class="icon-button" id="openCart" aria-label="Abrir carrito">
+            ♧ <span class="cart-counter" id="cartCounter">0</span>
+        </button>
+        <a href="index.html" class="header-cta">Volver al inicio</a>
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir menú">☰</button>
+    </div>
+</header>
+
+<div class="catalog-intro">
+    <div class="container">
+        <p class="eyebrow light">EL UNIVERSO TROVA</p>
+        <h1>Encuentra eso que <em>tanto deseas.</em></h1>
+        <p>Explora, descubre y encuentra tus próximos favoritos.</p>
+    </div>
+</div>
+
+<div class="catalog-layout container">
+
+    <button class="mobile-filter-toggle" id="mobileFilterToggle">☰ EXPLORAR CATEGORÍAS</button>
+
+    <aside class="catalog-sidebar" id="catalogSidebar">
+        <div class="sidebar-top">
+            <div><p class="eyebrow">NAVEGACIÓN</p><h2>Explorar</h2></div>
+            <button id="closeFilters" class="close-filters">×</button>
+        </div>
+
+        <a href="catalogo.html" class="sidebar-all" data-reset-catalog>
+            <span>✦</span> Todos los productos
+        </a>
+
+        <nav class="category-accordion">
+
+            <details data-category="tecnologia">
+                <summary><span>01</span> Tecnología <b>＋</b></summary>
+                <div class="subcategories">
+                    <a href="#" data-category-filter="tecnologia" data-subcategory="celulares">Celulares y accesorios</a>
+                    <a href="#" data-category-filter="tecnologia" data-subcategory="audio">Audio y audífonos</a>
+                    <a href="#" data-category-filter="tecnologia" data-subcategory="gadgets">Gadgets</a>
+                    <a href="#" data-category-filter="tecnologia" data-subcategory="computacion">Computación</a>
+                </div>
+            </details>
+
+            <details data-category="ropa">
+                <summary><span>02</span> Ropa y moda <b>＋</b></summary>
+                <div class="subcategories">
+                    <a href="#" data-category-filter="ropa" data-subcategory="dama">Dama</a>
+                    <a href="#" data-category-filter="ropa" data-subcategory="caballero">Caballero</a>
+                    <a href="#" data-category-filter="ropa" data-subcategory="ninos">Niños</a>
+                </div>
+            </details>
+
+            <details data-category="calzado">
+                <summary><span>03</span> Calzado <b>＋</b></summary>
+                <div class="subcategories">
+                    <a href="#" data-category-filter="calzado" data-subcategory="dama">Dama</a>
+                    <a href="#" data-category-filter="calzado" data-subcategory="caballero">Caballero</a>
+                    <a href="#" data-category-filter="calzado" data-subcategory="ninos">Niños</a>
+                    <a href="#" data-category-filter="calzado" data-subcategory="deportivo">Deportivo</a>
+                </div>
+            </details>
+
+            <details data-category="belleza">
+                <summary><span>04</span> Belleza y cuidado <b>＋</b></summary>
+                <div class="subcategories">
+                    <a href="#" data-category-filter="belleza" data-subcategory="maquillaje">Maquillaje</a>
+                    <a href="#" data-category-filter="belleza" data-subcategory="skincare">Skincare</a>
+                    <a href="#" data-category-filter="belleza" data-subcategory="cabello">Cuidado del cabello</a>
+                    <a href="#" data-category-filter="belleza" data-subcategory="personal">Cuidado personal</a>
+                </div>
+            </details>
+
+            <details data-category="accesorios">
+                <summary><span>05</span> Accesorios <b>＋</b></summary>
+                <div class="subcategories">
+                    <a href="#" data-category-filter="accesorios" data-subcategory="dama">Dama</a>
+                    <a href="#" data-category-filter="accesorios" data-subcategory="caballero">Caballero</a>
+                    <a href="#" data-category-filter="accesorios" data-subcategory="ninos">Niños</a>
+                    <a href="#" data-category-filter="accesorios" data-subcategory="joyeria">Joyería</a>
+                    <a href="#" data-category-filter="accesorios" data-subcategory="bolsos">Bolsos y carteras</a>
+                    <a href="#" data-category-filter="accesorios" data-subcategory="relojes">Relojes y lentes</a>
+                </div>
+            </details>
+
+            <details data-category="hogar">
+                <summary><span>06</span> Hogar y cocina <b>＋</b></summary>
+                <div class="subcategories">
+                    <a href="#" data-category-filter="hogar" data-subcategory="cocina">Cocina</a>
+                    <a href="#" data-category-filter="hogar" data-subcategory="organizacion">Organización</a>
+                    <a href="#" data-category-filter="hogar" data-subcategory="decoracion">Decoración</a>
+                    <a href="#" data-category-filter="hogar" data-subcategory="iluminacion">Iluminación</a>
+                </div>
+            </details>
+
+            <details data-category="juguetes">
+                <summary><span>07</span> Juguetes y niños <b>＋</b></summary>
+                <div class="subcategories">
+                    <a href="#" data-category-filter="juguetes" data-subcategory="juguetes">Juguetes</a>
+                    <a href="#" data-category-filter="juguetes" data-subcategory="educativos">Educativos</a>
+                    <a href="#" data-category-filter="juguetes" data-subcategory="papeleria">Papelería</a>
+                    <a href="#" data-category-filter="juguetes" data-subcategory="infantil">Accesorios infantiles</a>
+                </div>
+            </details>
+
+        </nav>
+
+        <div class="sidebar-request">
+            <span>¿NO ENCUENTRAS ALGO?</span>
+            <p>Podemos ayudarte a conseguirlo.</p>
+            <a href="index.html#solicitar">SOLICITAR PRODUCTO ↗</a>
+        </div>
+    </aside>
+
+    <main class="catalog-main">
+
+        <div class="catalog-breadcrumb">
+            TROVA <span>/</span> CATÁLOGO <span>/</span>
+            <strong id="currentBreadcrumb">TODOS LOS PRODUCTOS</strong>
+        </div>
+
+        <div class="catalog-toolbar">
+            <div>
+                <p class="eyebrow">DESCUBRE TU PRÓXIMO FAVORITO</p>
+                <h2 id="catalogHeading">Todos los productos</h2>
+                <p id="catalogDescription">Una selección para cada estilo y necesidad.</p>
+            </div>
+            <select id="sortProducts" aria-label="Ordenar productos">
+                <option value="featured">Destacados</option>
+                <option value="low">Menor precio</option>
+                <option value="high">Mayor precio</option>
+                <option value="name">Nombre A-Z</option>
+            </select>
+        </div>
+
+        <div class="catalog-search">
+            <span>⌕</span>
+            <input type="search" id="catalogSearch" placeholder="Buscar productos por nombre...">
+        </div>
+
+        <div class="audience-filter" id="audienceFilter">
+            <span>EXPLORAR POR:</span>
+            <button class="filter-chip active" data-audience="todos">Todos</button>
+            <button class="filter-chip" data-audience="dama">Dama</button>
+            <button class="filter-chip" data-audience="caballero">Caballero</button>
+            <button class="filter-chip" data-audience="ninos">Niños</button>
+        </div>
+
+        <div class="results-line">
+            <span id="resultsCount">Productos seleccionados</span>
+            <a href="catalogo.html" data-reset-catalog>Limpiar filtros ×</a>
+        </div>
+
+        <div class="product-grid catalog-products" id="catalogProducts"></div>
+
+        <div class="no-products" id="noProducts" hidden>
+            <span>⌕</span>
+            <h3>No encontramos resultados</h3>
+            <p>Prueba con otra búsqueda o explora una categoría diferente.</p>
+            <button class="btn btn-dark" id="clearSearch">VER TODOS LOS PRODUCTOS</button>
+        </div>
+
+        <section class="catalog-bottom-request">
+            <div>
+                <p class="eyebrow light">TU IDEA TAMBIÉN CUENTA</p>
+                <h2>¿Buscas algo que no aparece aquí?</h2>
+                <p>Envíanos el enlace y te ayudaremos a solicitarlo.</p>
+            </div>
+            <a href="index.html#solicitar" class="btn btn-gold">SOLICITAR PRODUCTO ↗</a>
+        </section>
+
+    </main>
+</div>
+
+<footer class="site-footer">
+    <div class="container footer-bottom">
+        <span>© 2026 TROVA. Todos los derechos reservados.</span>
+        <span>Compras por encargo, hechas más sencillas.</span>
+    </div>
+</footer>
+
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Carrito de compras">
+    <div class="cart-header">
+        <div><p class="eyebrow">TU SELECCIÓN</p><h2>Mi carrito</h2></div>
+        <button class="close-cart" id="closeCart" aria-label="Cerrar carrito">×</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+        <div class="cart-total"><span>Subtotal referencial</span><strong id="cartTotal">$0.00</strong></div>
+        <p>El precio final y la disponibilidad se confirmarán contigo.</p>
+        <button class="btn btn-gold btn-full" id="checkoutButton">ENVIAR PEDIDO POR WHATSAPP ↗</button>
+    </div>
+</aside>
+
+<div class="toast" id="toast" role="status"></div>
+
+</body>
+</html>
