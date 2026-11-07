@@ -26,12 +26,10 @@
 
             <form id="login-form">
                 <label for="email">Correo electrónico</label>
-                <input type="email" id="email" required
-                    placeholder="Tu correo electrónico">
+                <input type="email" id="email" required placeholder="Tu correo electrónico">
 
                 <label for="password">Contraseña</label>
-                <input type="password" id="password" required
-                    placeholder="Tu contraseña">
+                <input type="password" id="password" required placeholder="Tu contraseña">
 
                 <button type="submit" class="btn-primary">
                     INICIAR SESIÓN
@@ -52,18 +50,27 @@
                 <button data-section="dashboard" class="nav-link active">
                     <span>⌂</span> Inicio
                 </button>
+
                 <button data-section="products" class="nav-link">
                     <span>▦</span> Productos
                 </button>
+
                 <button data-section="categories" class="nav-link">
                     <span>▤</span> Categorías
                 </button>
+
                 <button data-section="orders" class="nav-link">
                     <span>▣</span> Pedidos
                 </button>
+
                 <button data-section="promotions" class="nav-link">
                     <span>◇</span> Promociones
                 </button>
+
+                <button data-section="users" class="nav-link">
+                    <span>♙</span> Usuarios
+                </button>
+
                 <button data-section="settings" class="nav-link">
                     <span>⚙</span> Configuración
                 </button>
@@ -84,6 +91,7 @@
                     <p class="topbar-label">ESPACIO DE TRABAJO</p>
                     <h2 id="store-name">TROVA</h2>
                 </div>
+
                 <div class="admin-profile">
                     <span class="profile-avatar">T</span>
                     <span id="admin-email">Administrador</span>
@@ -105,14 +113,17 @@
                         <span>PRODUCTOS</span>
                         <strong id="stat-products">0</strong>
                     </article>
+
                     <article class="stat-card">
                         <span>PEDIDOS</span>
                         <strong id="stat-orders">0</strong>
                     </article>
+
                     <article class="stat-card">
                         <span>PENDIENTES</span>
                         <strong id="stat-pending">0</strong>
                     </article>
+
                     <article class="stat-card">
                         <span>CATEGORÍAS</span>
                         <strong id="stat-categories">0</strong>
@@ -125,10 +136,12 @@
                             <p class="eyebrow">ACTIVIDAD</p>
                             <h2>Pedidos recientes</h2>
                         </div>
+
                         <button class="btn-outline" data-go="orders">
                             Ver pedidos
                         </button>
                     </div>
+
                     <div id="recent-orders" class="table-container">
                         <p class="muted">Cargando información...</p>
                     </div>
@@ -143,6 +156,7 @@
                         <h1>Productos</h1>
                         <p class="muted">Administra los artículos de tu tienda.</p>
                     </div>
+
                     <button id="new-product-button" class="btn-primary">
                         + Nuevo producto
                     </button>
@@ -162,31 +176,32 @@
                                 <label for="product-name">Nombre</label>
                                 <input id="product-name" required>
                             </div>
+
                             <div>
                                 <label for="product-price">Precio (USD)</label>
-                                <input id="product-price" type="number"
-                                    min="0" step="0.01" required>
+                                <input id="product-price" type="number" min="0" step="0.01" required>
                             </div>
+
                             <div>
                                 <label for="product-compare-price">Precio anterior</label>
-                                <input id="product-compare-price"
-                                    type="number" min="0" step="0.01">
+                                <input id="product-compare-price" type="number" min="0" step="0.01">
                             </div>
+
                             <div>
                                 <label for="product-stock">Existencias</label>
-                                <input id="product-stock" type="number"
-                                    min="0" value="0">
+                                <input id="product-stock" type="number" min="0" value="0">
                             </div>
+
                             <div>
                                 <label for="product-category">Categoría</label>
                                 <select id="product-category">
                                     <option value="">Sin categoría</option>
                                 </select>
                             </div>
+
                             <div>
                                 <label for="product-image">Fotografía</label>
-                                <input id="product-image" type="file"
-                                    accept="image/jpeg,image/png,image/webp">
+                                <input id="product-image" type="file" accept="image/jpeg,image/png,image/webp">
                             </div>
                         </div>
 
@@ -197,8 +212,7 @@
 
                         <div>
                             <label for="product-external-url">Enlace externo (opcional)</label>
-                            <input id="product-external-url" type="url"
-                                placeholder="https://...">
+                            <input id="product-external-url" type="url" placeholder="https://...">
                         </div>
 
                         <div class="checkbox-row">
@@ -207,9 +221,7 @@
                             <label><input type="checkbox" id="product-active" checked> Visible en tienda</label>
                         </div>
 
-                        <button type="submit" class="btn-primary">
-                            GUARDAR PRODUCTO
-                        </button>
+                        <button type="submit" class="btn-primary">GUARDAR PRODUCTO</button>
                         <p id="product-message" class="form-message"></p>
                     </form>
                 </div>
@@ -217,9 +229,9 @@
                 <div class="panel-card">
                     <div class="panel-heading">
                         <h2>Todos los productos</h2>
-                        <input id="product-search" class="search-input"
-                            placeholder="Buscar producto...">
+                        <input id="product-search" class="search-input" placeholder="Buscar producto...">
                     </div>
+
                     <div id="products-list" class="table-container">
                         <p class="muted">Cargando productos...</p>
                     </div>
@@ -238,12 +250,14 @@
 
                 <div class="panel-card">
                     <h2>Crear categoría</h2>
+
                     <form id="category-form" class="admin-form">
                         <div class="form-grid">
                             <div>
                                 <label for="category-name">Nombre</label>
                                 <input id="category-name" required>
                             </div>
+
                             <div>
                                 <label for="category-parent">Categoría principal</label>
                                 <select id="category-parent">
@@ -251,9 +265,8 @@
                                 </select>
                             </div>
                         </div>
-                        <button class="btn-primary" type="submit">
-                            GUARDAR CATEGORÍA
-                        </button>
+
+                        <button class="btn-primary" type="submit">GUARDAR CATEGORÍA</button>
                         <p id="category-message" class="form-message"></p>
                     </form>
                 </div>
@@ -273,13 +286,13 @@
                         <p class="muted">Consulta y actualiza los pedidos recibidos.</p>
                     </div>
                 </div>
+
                 <div class="panel-card">
                     <div class="panel-heading">
                         <h2>Listado de pedidos</h2>
-                        <button id="refresh-orders" class="btn-outline">
-                            Actualizar
-                        </button>
+                        <button id="refresh-orders" class="btn-outline">Actualizar</button>
                     </div>
+
                     <div id="orders-list" class="table-container"></div>
                 </div>
             </section>
@@ -293,10 +306,83 @@
                         <p class="muted">Consulta y administra las ofertas de TROVA.</p>
                     </div>
                 </div>
+
                 <div class="panel-card">
                     <p class="muted">
                         Aquí administraremos los descuentos y las campañas
                         de productos una vez conectemos este apartado.
+                    </p>
+                </div>
+            </section>
+
+            <!-- USUARIOS -->
+            <section id="section-users" class="admin-section hidden">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">CONTROL DE ACCESO</p>
+                        <h1>Usuarios</h1>
+                        <p class="muted">
+                            Administra quién puede ingresar al panel de TROVA.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <h2>Agregar usuario</h2>
+
+                    <p class="muted">
+                        Registra nuevos miembros del equipo y define sus permisos.
+                    </p>
+
+                    <form id="user-form" class="admin-form">
+                        <div class="form-grid">
+                            <div>
+                                <label for="user-email">Correo electrónico</label>
+                                <input
+                                    id="user-email"
+                                    type="email"
+                                    placeholder="usuario@correo.com"
+                                    required>
+                            </div>
+
+                            <div>
+                                <label for="user-role">Rol de acceso</label>
+                                <select id="user-role" required>
+                                    <option value="editor">Editor</option>
+                                    <option value="admin">Administrador</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary" id="add-user-button">
+                            AGREGAR USUARIO
+                        </button>
+
+                        <p id="user-message" class="form-message"></p>
+                    </form>
+                </div>
+
+                <div class="panel-card">
+                    <div class="panel-heading">
+                        <div>
+                            <h2>Miembros de TROVA</h2>
+                            <p class="muted">Usuarios con acceso a la administración.</p>
+                        </div>
+
+                        <button type="button" id="refresh-users" class="btn-outline">
+                            Actualizar
+                        </button>
+                    </div>
+
+                    <div id="users-list" class="table-container">
+                        <p class="muted">Los usuarios aparecerán aquí.</p>
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <p class="muted">
+                        Por seguridad, únicamente el propietario podrá gestionar
+                        los accesos y los permisos de los demás miembros.
                     </p>
                 </div>
             </section>
@@ -325,6 +411,7 @@
                         <button type="submit" class="btn-primary">
                             GUARDAR CONFIGURACIÓN
                         </button>
+
                         <p id="settings-message" class="form-message"></p>
                     </form>
                 </div>
