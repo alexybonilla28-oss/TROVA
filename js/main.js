@@ -12,7 +12,6 @@ const TROVA = {
 
 /* =====================================================
    PRODUCT DATABASE
-   Cambia nombres, precios, fotos y enlaces aquí.
 ===================================================== */
 
 const products = [
@@ -51,7 +50,7 @@ const products = [
         id: 3,
         name: "Tenis deportivos modernos",
         category: "calzado",
-        subcategory: "caballero",
+        subcategory: "deportivo",
         audience: "caballero",
         price: 39.99,
         oldPrice: 49.99,
@@ -257,182 +256,6 @@ const products = [
         image: "https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=700&q=80",
         url: "https://www.amazon.com/s?k=kids+sandals"
     }
-    ,
-    {
-        id: 17,
-        name: "Blusa casual para dama",
-        category: "ropa",
-        subcategory: "dama",
-        audience: "dama",
-        price: 18.99,
-        oldPrice: 23.99,
-        tag: "OFERTA",
-        featured: false,
-        isNew: false,
-        offer: true,
-        image: "https://images.unsplash.com/photo-1564257577-1a2d4c6c3a6d?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=womens+casual+blouse"
-    },
-    {
-        id: 18,
-        name: "Pantalón casual para caballero",
-        category: "ropa",
-        subcategory: "caballero",
-        audience: "caballero",
-        price: 27.99,
-        oldPrice: null,
-        tag: "",
-        featured: false,
-        isNew: false,
-        offer: false,
-        image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=mens+casual+pants"
-    },
-    {
-        id: 19,
-        name: "Conjunto infantil cómodo",
-        category: "ropa",
-        subcategory: "ninos",
-        audience: "ninos",
-        price: 19.50,
-        oldPrice: null,
-        tag: "NOVEDAD",
-        featured: false,
-        isNew: true,
-        offer: false,
-        image: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=kids+clothing+set"
-    },
-    {
-        id: 20,
-        name: "Tenis casuales para caballero",
-        category: "calzado",
-        subcategory: "caballero",
-        audience: "caballero",
-        price: 36.99,
-        oldPrice: null,
-        tag: "",
-        featured: false,
-        isNew: false,
-        offer: false,
-        image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=mens+casual+shoes"
-    },
-    {
-        id: 21,
-        name: "Tenis infantiles",
-        category: "calzado",
-        subcategory: "ninos",
-        audience: "ninos",
-        price: 24.99,
-        oldPrice: 29.99,
-        tag: "OFERTA",
-        featured: false,
-        isNew: false,
-        offer: true,
-        image: "https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=kids+sneakers"
-    },
-    {
-        id: 22,
-        name: "Sandalias elegantes para dama",
-        category: "calzado",
-        subcategory: "dama",
-        audience: "dama",
-        price: 28.50,
-        oldPrice: null,
-        tag: "",
-        featured: false,
-        isNew: false,
-        offer: false,
-        image: "https://images.unsplash.com/photo-1562273138-f46be4ebdf33?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=womens+sandals"
-    }
-    ,
-    {
-        id: 23, name: "Funda y accesorios para celular", category: "tecnologia",
-        subcategory: "celulares", audience: "todos", price: 11.99, oldPrice: null,
-        tag: "", featured: false, isNew: false, offer: false,
-        image: "https://images.unsplash.com/photo-1605236453806-6ff36851218e?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=phone+case+accessories"
-    },
-    {
-        id: 24, name: "Teclado compacto para computadora", category: "tecnologia",
-        subcategory: "computacion", audience: "todos", price: 26.99, oldPrice: 32.99,
-        tag: "OFERTA", featured: false, isNew: false, offer: true,
-        image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=compact+computer+keyboard"
-    },
-    {
-        id: 25, name: "Tratamiento para el cuidado del cabello", category: "belleza",
-        subcategory: "cabello", audience: "todos", price: 14.99, oldPrice: null,
-        tag: "", featured: false, isNew: false, offer: false,
-        image: "https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=hair+care+treatment"
-    },
-    {
-        id: 26, name: "Set de cuidado personal", category: "belleza",
-        subcategory: "personal", audience: "todos", price: 17.50, oldPrice: null,
-        tag: "", featured: false, isNew: false, offer: false,
-        image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=personal+care+set"
-    },
-    {
-        id: 27, name: "Utensilios prácticos para cocina", category: "hogar",
-        subcategory: "cocina", audience: "todos", price: 15.99, oldPrice: 19.99,
-        tag: "OFERTA", featured: false, isNew: false, offer: true,
-        image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=kitchen+utensil+set"
-    },
-    {
-        id: 28, name: "Espejo decorativo para el hogar", category: "hogar",
-        subcategory: "decoracion", audience: "todos", price: 22.99, oldPrice: null,
-        tag: "", featured: false, isNew: false, offer: false,
-        image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=decorative+home+mirror"
-    },
-    {
-        id: 29, name: "Lámpara LED para escritorio", category: "hogar",
-        subcategory: "iluminacion", audience: "todos", price: 18.99, oldPrice: null,
-        tag: "", featured: false, isNew: false, offer: false,
-        image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=led+desk+lamp"
-    },
-    {
-        id: 30, name: "Juego de mesa familiar", category: "juguetes",
-        subcategory: "juguetes", audience: "ninos", price: 16.99, oldPrice: null,
-        tag: "", featured: false, isNew: false, offer: false,
-        image: "https://images.unsplash.com/photo-1606503153255-59d8b8b821e2?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=family+board+game"
-    },
-    {
-        id: 31, name: "Cuaderno y set de papelería", category: "juguetes",
-        subcategory: "papeleria", audience: "ninos", price: 9.99, oldPrice: null,
-        tag: "", featured: false, isNew: false, offer: false,
-        image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=stationery+set"
-    },
-    {
-        id: 32, name: "Pulsera de acero para caballero", category: "accesorios",
-        subcategory: "caballero", audience: "caballero", price: 13.99, oldPrice: null,
-        tag: "", featured: false, isNew: false, offer: false,
-        image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=mens+steel+bracelet"
-    },
-    {
-        id: 33, name: "Accesorio infantil para cabello", category: "accesorios",
-        subcategory: "ninos", audience: "ninos", price: 7.99, oldPrice: null,
-        tag: "", featured: false, isNew: false, offer: false,
-        image: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=kids+hair+accessories"
-    },
-    {
-        id: 34, name: "Tenis para entrenamiento", category: "calzado",
-        subcategory: "deportivo", audience: "caballero", price: 35.99, oldPrice: 42.99,
-        tag: "OFERTA", featured: false, isNew: false, offer: true,
-        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80",
-        url: "https://www.amazon.com/s?k=training+sneakers"
-    }
 ];
 
 
@@ -492,10 +315,6 @@ function productCard(product) {
     const oldPrice = product.oldPrice
         ? `<span class="product-old-price">${money(product.oldPrice)}</span>`
         : "";
-    const discount = product.oldPrice && product.oldPrice > product.price
-        ? `<span class="product-discount">-${Math.round((1 - product.price / product.oldPrice) * 100)}%</span>`
-        : "";
-    const displayCategory = categoryNames[product.category] || product.category;
 
     const safeURL = safeExternalURL(product.url);
 
@@ -503,14 +322,13 @@ function productCard(product) {
         <article class="product-card">
             <div class="product-image-wrap">
                 ${tag}
-                ${discount}
                 <img class="product-image"
                      src="${escapeHTML(product.image)}"
                      alt="${escapeHTML(product.name)}"
                      loading="lazy">
             </div>
             <div class="product-info">
-                <p class="product-category">${escapeHTML(displayCategory)} · ${escapeHTML(subcategoryNames[product.subcategory] || "")}</p>
+                <p class="product-category">${escapeHTML(product.category)}</p>
                 <h3>${escapeHTML(product.name)}</h3>
                 <div class="product-price">
                     ${money(product.price)} ${oldPrice}
@@ -664,17 +482,15 @@ function updateCatalogHeading() {
     heading.textContent = title;
     breadcrumb.textContent = title.toUpperCase();
 
-    description.textContent = catalogState.offers
-        ? "Productos seleccionados con precios especiales. Consulta disponibilidad antes de confirmar tu pedido."
-        : catalogState.category
-            ? "Explora nuestra selección de " + title.toLowerCase() + "."
-            : "Una selección para cada estilo y necesidad.";
+    description.textContent = catalogState.category
+        ? "Explora nuestra selección de " + title.toLowerCase() + "."
+        : "Una selección para cada estilo y necesidad.";
 
     const filter = document.getElementById("audienceFilter");
 
     if (filter) {
         filter.style.display =
-            !catalogState.offers && ["ropa", "calzado", "accesorios"].includes(catalogState.category)
+            ["ropa", "calzado", "accesorios"].includes(catalogState.category)
                 ? "flex"
                 : "none";
     }
@@ -769,9 +585,9 @@ function renderCatalog() {
     const noProducts = document.getElementById("noProducts");
     const count = document.getElementById("resultsCount");
 
-    if (noProducts) noProducts.hidden = result.length !== 0;
+    noProducts.hidden = result.length !== 0;
 
-    if (count) count.textContent =
+    count.textContent =
         result.length + (result.length === 1 ? " producto encontrado" : " productos encontrados");
 
     updateCatalogHeading();
@@ -1035,7 +851,7 @@ function initializeCart() {
 
 
 /* =====================================================
-   WHATSAPP ORDER
+   WHATSAPP ORDER - FORMATO PROFESIONAL
 ===================================================== */
 
 function checkoutWhatsApp() {
@@ -1044,40 +860,112 @@ function checkoutWhatsApp() {
         return;
     }
 
+    const customerName = (prompt("Nombre completo del cliente:") || "").trim();
+
+    if (!customerName) {
+        showToast("Es necesario ingresar el nombre del cliente.");
+        return;
+    }
+
+    const customerPhone = (prompt("Teléfono de contacto:") || "").trim();
+
+    if (!customerPhone) {
+        showToast("Es necesario ingresar un teléfono de contacto.");
+        return;
+    }
+
+    const customerCity = (prompt("Ciudad o municipio:") || "").trim();
+
+    if (!customerCity) {
+        showToast("Es necesario ingresar la ciudad.");
+        return;
+    }
+
+    const deliveryChoice = prompt(
+        "Modalidad de entrega:\nEscribe DOMICILIO o PUNTO DE ENTREGA",
+        "DOMICILIO"
+    );
+
+    if (deliveryChoice === null) return;
+
+    const deliveryMode = deliveryChoice.trim().toLowerCase();
+
+    if (!["domicilio", "punto de entrega", "punto"].includes(deliveryMode)) {
+        showToast("Escribe DOMICILIO o PUNTO DE ENTREGA.");
+        return;
+    }
+
+    const deliveryAddress = (prompt(
+        deliveryMode === "domicilio"
+            ? "Dirección completa para la entrega:"
+            : "Indica el punto de entrega:"
+    ) || "").trim();
+
+    if (!deliveryAddress) {
+        showToast("Indica la dirección o el punto de entrega.");
+        return;
+    }
+
+    const observations = (
+        prompt("Observaciones (opcional):", "Ninguna") || "Ninguna"
+    ).trim() || "Ninguna";
+
+    const subtotal = cartSubtotal();
+    const deposit = subtotal * 0.50;
+    const balance = subtotal - deposit;
+
     const lines = cart.map(item => {
         const product = products.find(product => product.id === item.id);
 
-        return product
-            ? `• ${product.name}\n  Cantidad: ${item.quantity}\n  Precio referencial: ${money(product.price * item.quantity)}`
-            : "";
+        if (!product) return "";
+
+        return `- ${product.name} | Cantidad: ${item.quantity} | Subtotal: ${money(product.price * item.quantity)}`;
     }).filter(Boolean);
 
     const message = [
-        "¡Hola TROVA! Quiero realizar el siguiente pedido:",
+        "NUEVA SOLICITUD DE COMPRA - TROVA",
         "",
+        "CLIENTE",
+        `Nombre: ${customerName}`,
+        `Teléfono: ${customerPhone}`,
+        `Ciudad: ${customerCity}`,
+        "",
+        "PRODUCTOS",
         ...lines,
         "",
-        "Subtotal referencial: " + money(cartSubtotal()),
+        "RESUMEN",
+        `Total estimado: ${money(subtotal)}`,
+        "Modalidad de pago: 50% anticipo y 50% contra entrega",
+        `Anticipo estimado: ${money(deposit)}`,
+        `Saldo estimado: ${money(balance)}`,
         "",
-        "Quisiera confirmar disponibilidad, precio final y detalles de entrega.",
+        "ENTREGA",
+        `Modalidad: ${deliveryMode === "domicilio" ? "Domicilio" : "Punto de entrega"}`,
+        `Dirección o punto: ${deliveryAddress}`,
         "",
-        "Gracias."
+        "OBSERVACIONES",
+        observations,
+        "",
+        "IMPORTANTE:",
+        "Los precios y la disponibilidad deben ser confirmados por TROVA.",
+        "Esta solicitud no representa una compra confirmada."
     ].join("\n");
 
-    window.open(
-        "https://wa.me/" + TROVA.whatsapp + "?text=" + encodeURIComponent(message),
-        "_blank",
-        "noopener"
-    );
+    const whatsappURL =
+        "https://wa.me/" + TROVA.whatsapp +
+        "?text=" + encodeURIComponent(message);
+
+    window.open(whatsappURL, "_blank", "noopener");
 }
 
 
 /* =====================================================
-   EXTERNAL PRODUCT REQUEST
+   EXTERNAL PRODUCT REQUEST - FORMATO PROFESIONAL
 ===================================================== */
 
 function initializeExternalRequest() {
     const form = document.getElementById("externalProductForm");
+
     if (!form) return;
 
     form.addEventListener("submit", event => {
@@ -1087,26 +975,40 @@ function initializeExternalRequest() {
         const link = form.elements.link.value.trim();
         const details = form.elements.details.value.trim();
 
+        const quantityField = form.elements.quantity;
+
+        const quantityValue = quantityField
+            ? Number(quantityField.value)
+            : 1;
+
+        const quantity =
+            Number.isInteger(quantityValue) && quantityValue > 0
+                ? quantityValue
+                : 1;
+
         if (!name || !safeExternalURL(link)) {
             showToast("Revisa el nombre y el enlace del producto.");
             return;
         }
 
         const message = [
-            "¡Hola TROVA! Quisiera solicitar un producto externo.",
+            "SOLICITUD DE PRODUCTO EXTERNO - TROVA",
             "",
-            "Producto: " + name,
-            "Enlace: " + link,
-            "Detalles: " + (details || "Sin detalles adicionales."),
+            `Producto: ${name}`,
+            `Cantidad: ${quantity}`,
+            `Enlace: ${link}`,
             "",
-            "Me gustaría conocer su disponibilidad y precio."
+            "Comentarios:",
+            details || "Sin comentarios",
+            "",
+            "Solicito información sobre disponibilidad y precio."
         ].join("\n");
 
-        window.open(
-            "https://wa.me/" + TROVA.whatsapp + "?text=" + encodeURIComponent(message),
-            "_blank",
-            "noopener"
-        );
+        const whatsappURL =
+            "https://wa.me/" + TROVA.whatsapp +
+            "?text=" + encodeURIComponent(message);
+
+        window.open(whatsappURL, "_blank", "noopener");
     });
 }
 
@@ -1124,20 +1026,8 @@ function initializeNavigation() {
     });
 
     nav?.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", event => {
-            const dropdown = link.closest(".nav-dropdown");
-
-            if (link.classList.contains("nav-dropdown-trigger") &&
-                window.matchMedia("(max-width: 760px)").matches) {
-                event.preventDefault();
-                dropdown?.classList.toggle("dropdown-open");
-                return;
-            }
-
+        link.addEventListener("click", () => {
             nav.classList.remove("mobile-open");
-            nav.querySelectorAll(".nav-dropdown").forEach(item => {
-                item.classList.remove("dropdown-open");
-            });
         });
     });
 }
