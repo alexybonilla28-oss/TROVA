@@ -1,0 +1,382 @@
+
+:root {
+    --negro: #171717;
+    --dorado: #C5A46D;
+    --crema: #F1EDE5;
+    --blanco: #FFFFFF;
+    --texto: #292929;
+    --gris: #777777;
+
+    --fuente-principal: 'Segoe UI', Arial, sans-serif;
+    --fuente-editorial: Georgia, serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background: var(--blanco);
+    color: var(--texto);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+}
+
+.contenedor {
+    width: 90%;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+/* ENCABEZADO */
+
+.encabezado {
+    background: var(--negro);
+    color: var(--blanco);
+    border-bottom: 1px solid rgba(197, 164, 109, 0.35);
+    position: relative;
+    z-index: 10;
+}
+
+.encabezado-contenido {
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/* LOGOTIPO */
+
+.logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.logo-imagen {
+    display: block;
+    width: 260px;
+    max-width: 100%;
+    height: 85px;
+    object-fit: contain;
+    object-position: left center;
+}
+
+/* NAVEGACIÓN */
+
+.navegacion {
+    display: flex;
+    align-items: center;
+    gap: 27px;
+}
+
+.navegacion a {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: var(--blanco);
+    transition: color 0.3s ease;
+}
+
+.navegacion a:hover {
+    color: var(--dorado);
+}
+
+/* PORTADA */
+
+.portada {
+    background: var(--negro);
+    color: var(--blanco);
+    min-height: 570px;
+    display: flex;
+    align-items: center;
+    padding: 90px 0;
+}
+
+.portada-contenido {
+    max-width: 720px;
+}
+
+.portada-etiqueta,
+.etiqueta-seccion {
+    color: var(--dorado);
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.portada-etiqueta {
+    text-align: left;
+}
+
+.portada h1 {
+    font-family: var(--fuente-editorial);
+    font-size: clamp(43px, 6vw, 76px);
+    font-weight: 400;
+    line-height: 1.12;
+    margin-bottom: 25px;
+}
+
+.portada h1 span {
+    color: var(--dorado);
+}
+
+.portada-descripcion {
+    color: #D0D0D0;
+    font-size: 16px;
+    max-width: 520px;
+    margin-bottom: 35px;
+}
+
+.portada-botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* BOTONES */
+
+.boton {
+    display: inline-block;
+    padding: 14px 27px;
+    border: 1px solid var(--dorado);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+}
+
+.boton-dorado {
+    background: var(--dorado);
+    color: var(--negro);
+}
+
+.boton-dorado:hover {
+    background: transparent;
+    color: var(--dorado);
+}
+
+.boton-contorno {
+    color: var(--dorado);
+    background: transparent;
+}
+
+.boton-contorno:hover {
+    background: var(--dorado);
+    color: var(--negro);
+}
+
+/* SECCIONES */
+
+.seccion {
+    padding: 90px 0;
+}
+
+.seccion-crema {
+    background: var(--crema);
+}
+
+.titulo-seccion {
+    font-family: var(--fuente-editorial);
+    font-size: 40px;
+    font-weight: 400;
+    text-align: center;
+    color: var(--negro);
+    margin-bottom: 16px;
+}
+
+.subtitulo-seccion {
+    color: var(--gris);
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 45px;
+}
+
+/* CATEGORÍAS */
+
+.categorias-contenido {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.categoria-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 190px;
+    padding: 28px;
+    background: var(--negro);
+    color: var(--blanco);
+    border: 1px solid rgba(197, 164, 109, 0.3);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.categoria-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--dorado);
+}
+
+.categoria-numero {
+    color: var(--dorado);
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+}
+
+.categoria-card h3 {
+    font-family: var(--fuente-editorial);
+    font-size: 23px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.categoria-card p {
+    color: #C5C5C5;
+    font-size: 13px;
+}
+
+/* PRODUCTOS Y OFERTAS */
+
+.productos-contenido,
+.ofertas-contenido,
+.proceso-contenido,
+.contacto-contenido {
+    width: 100%;
+}
+
+/* PIE DE PÁGINA */
+
+.pie-pagina {
+    background: var(--negro);
+    color: var(--blanco);
+    padding: 55px 0;
+    text-align: center;
+}
+
+.pie-logo {
+    margin-bottom: 20px;
+}
+
+.pie-logo img {
+    display: block;
+    max-width: 190px;
+    max-height: 75px;
+    width: auto;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+.pie-pagina p {
+    color: #BDBDBD;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.pie-pagina .eslogan {
+    color: var(--dorado);
+    margin-bottom: 25px;
+}
+
+.pie-pagina .aviso-comercial {
+    max-width: 550px;
+    margin: 0 auto 20px;
+}
+
+.pie-pagina .derechos {
+    font-size: 11px;
+}
+
+/* TABLETS Y CELULARES */
+
+@media (max-width: 768px) {
+
+    .encabezado-contenido {
+        flex-direction: column;
+        justify-content: center;
+        padding: 18px 0;
+        gap: 18px;
+    }
+
+    .logo-imagen {
+        width: 210px;
+        height: 70px;
+    }
+
+    .navegacion {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 14px 20px;
+    }
+
+    .navegacion a {
+        font-size: 10px;
+    }
+
+    .portada {
+        min-height: 480px;
+        padding: 65px 0;
+    }
+
+    .portada h1 {
+        font-size: 43px;
+    }
+
+    .portada-botones {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .seccion {
+        padding: 65px 0;
+    }
+
+    .titulo-seccion {
+        font-size: 31px;
+    }
+
+    .categorias-contenido {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .categoria-card {
+        min-height: 165px;
+        padding: 20px;
+    }
+
+    .categoria-card h3 {
+        font-size: 19px;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .portada h1 {
+        font-size: 36px;
+    }
+
+    .navegacion {
+        gap: 12px;
+    }
+
+    .categorias-contenido {
+        grid-template-columns: 1fr;
+    }
+}
