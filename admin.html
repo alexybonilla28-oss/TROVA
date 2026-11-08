@@ -1,11 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administración | TROVA</title>
     <meta name="theme-color" content="#171717">
+
+    <title>Administración | TROVA</title>
 
     <link rel="stylesheet" href="css/admin.css">
 
@@ -16,37 +16,68 @@
 
 <body>
 
-    <!-- ACCESO -->
+    <!-- ================= ACCESO ================= -->
+
     <section id="login-screen" class="login-screen">
         <div class="login-card">
+
             <div class="login-logo">TROVA<span>.</span></div>
+
             <p class="login-label">PANEL DE ADMINISTRACIÓN</p>
+
             <h1>Bienvenido de nuevo</h1>
-            <p class="muted">Ingresa para administrar tu tienda.</p>
+
+            <p class="muted">
+                Ingresa para administrar tu tienda.
+            </p>
 
             <form id="login-form">
+
                 <label for="email">Correo electrónico</label>
-                <input type="email" id="email" required placeholder="Tu correo electrónico">
+                <input
+                    type="email"
+                    id="email"
+                    required
+                    placeholder="Tu correo electrónico"
+                    autocomplete="username"
+                >
 
                 <label for="password">Contraseña</label>
-                <input type="password" id="password" required placeholder="Tu contraseña">
+                <input
+                    type="password"
+                    id="password"
+                    required
+                    placeholder="Tu contraseña"
+                    autocomplete="current-password"
+                >
 
                 <button type="submit" class="btn-primary">
                     INICIAR SESIÓN
                 </button>
+
                 <p id="login-error" class="error-message"></p>
+
             </form>
         </div>
     </section>
 
-    <!-- PANEL -->
+
+    <!-- ================= PANEL ADMINISTRATIVO ================= -->
+
     <div id="admin-app" class="admin-app hidden">
 
+        <!-- BARRA LATERAL -->
+
         <aside class="sidebar">
-            <a href="index.html" class="brand">TROVA<span>.</span></a>
+
+            <a href="index.html" class="brand">
+                TROVA<span>.</span>
+            </a>
+
             <p class="sidebar-caption">ADMINISTRACIÓN</p>
 
             <nav class="side-nav">
+
                 <button data-section="dashboard" class="nav-link active">
                     <span>⌂</span> Inicio
                 </button>
@@ -74,19 +105,30 @@
                 <button data-section="settings" class="nav-link">
                     <span>⚙</span> Configuración
                 </button>
+
             </nav>
 
             <div class="sidebar-bottom">
+
                 <a href="index.html">Ver tienda ↗</a>
+
                 <button id="logout-button" class="logout-button">
                     Cerrar sesión
                 </button>
+
             </div>
+
         </aside>
+
+
+        <!-- CONTENIDO PRINCIPAL -->
 
         <main class="main-content">
 
+            <!-- ENCABEZADO -->
+
             <header class="topbar">
+
                 <div>
                     <p class="topbar-label">ESPACIO DE TRABAJO</p>
                     <h2 id="store-name">TROVA</h2>
@@ -96,19 +138,26 @@
                     <span class="profile-avatar">T</span>
                     <span id="admin-email">Administrador</span>
                 </div>
+
             </header>
 
-            <!-- INICIO -->
+
+            <!-- ================= INICIO ================= -->
+
             <section id="section-dashboard" class="admin-section">
+
                 <div class="section-heading">
                     <div>
                         <p class="eyebrow">RESUMEN GENERAL</p>
                         <h1>Bienvenido a TROVA</h1>
-                        <p class="muted">Administra tu tienda desde un solo lugar.</p>
+                        <p class="muted">
+                            Administra tu tienda desde un solo lugar.
+                        </p>
                     </div>
                 </div>
 
                 <div class="stats-grid">
+
                     <article class="stat-card">
                         <span>PRODUCTOS</span>
                         <strong id="stat-products">0</strong>
@@ -128,10 +177,13 @@
                         <span>CATEGORÍAS</span>
                         <strong id="stat-categories">0</strong>
                     </article>
+
                 </div>
 
                 <div class="panel-card">
+
                     <div class="panel-heading">
+
                         <div>
                             <p class="eyebrow">ACTIVIDAD</p>
                             <h2>Pedidos recientes</h2>
@@ -140,38 +192,59 @@
                         <button class="btn-outline" data-go="orders">
                             Ver pedidos
                         </button>
+
                     </div>
 
                     <div id="recent-orders" class="table-container">
                         <p class="muted">Cargando información...</p>
                     </div>
+
                 </div>
+
             </section>
 
-            <!-- PRODUCTOS -->
+
+            <!-- ================= PRODUCTOS ================= -->
+
             <section id="section-products" class="admin-section hidden">
+
                 <div class="section-heading">
+
                     <div>
                         <p class="eyebrow">CATÁLOGO</p>
                         <h1>Productos</h1>
-                        <p class="muted">Administra los artículos de tu tienda.</p>
+                        <p class="muted">
+                            Administra los artículos de tu tienda.
+                        </p>
                     </div>
 
                     <button id="new-product-button" class="btn-primary">
                         + Nuevo producto
                     </button>
+
                 </div>
 
+
+                <!-- FORMULARIO PRODUCTO -->
+
                 <div id="product-form-card" class="panel-card hidden">
+
                     <div class="panel-heading">
+
                         <h2 id="product-form-title">Nuevo producto</h2>
-                        <button id="cancel-product" class="btn-outline">Cerrar</button>
+
+                        <button id="cancel-product" class="btn-outline">
+                            Cerrar
+                        </button>
+
                     </div>
 
                     <form id="product-form" class="admin-form">
+
                         <input type="hidden" id="product-id">
 
                         <div class="form-grid">
+
                             <div>
                                 <label for="product-name">Nombre</label>
                                 <input id="product-name" required>
@@ -179,17 +252,35 @@
 
                             <div>
                                 <label for="product-price">Precio (USD)</label>
-                                <input id="product-price" type="number" min="0" step="0.01" required>
+                                <input
+                                    id="product-price"
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                    required
+                                >
                             </div>
 
                             <div>
-                                <label for="product-compare-price">Precio anterior</label>
-                                <input id="product-compare-price" type="number" min="0" step="0.01">
+                                <label for="product-compare-price">
+                                    Precio anterior
+                                </label>
+                                <input
+                                    id="product-compare-price"
+                                    type="number"
+                                    min="0"
+                                    step="0.01"
+                                >
                             </div>
 
                             <div>
                                 <label for="product-stock">Existencias</label>
-                                <input id="product-stock" type="number" min="0" value="0">
+                                <input
+                                    id="product-stock"
+                                    type="number"
+                                    min="0"
+                                    value="0"
+                                >
                             </div>
 
                             <div>
@@ -201,123 +292,230 @@
 
                             <div>
                                 <label for="product-image">Fotografía</label>
-                                <input id="product-image" type="file" accept="image/jpeg,image/png,image/webp">
+                                <input
+                                    id="product-image"
+                                    type="file"
+                                    accept="image/jpeg,image/png,image/webp"
+                                >
                             </div>
+
                         </div>
 
                         <div>
-                            <label for="product-description">Descripción</label>
-                            <textarea id="product-description" rows="4"></textarea>
+                            <label for="product-description">
+                                Descripción
+                            </label>
+                            <textarea
+                                id="product-description"
+                                rows="4"
+                            ></textarea>
                         </div>
 
                         <div>
-                            <label for="product-external-url">Enlace externo (opcional)</label>
-                            <input id="product-external-url" type="url" placeholder="https://...">
+                            <label for="product-external-url">
+                                Enlace externo (opcional)
+                            </label>
+                            <input
+                                id="product-external-url"
+                                type="url"
+                                placeholder="https://..."
+                            >
                         </div>
 
                         <div class="checkbox-row">
-                            <label><input type="checkbox" id="product-featured"> Producto destacado</label>
-                            <label><input type="checkbox" id="product-offer"> En oferta</label>
-                            <label><input type="checkbox" id="product-active" checked> Visible en tienda</label>
+
+                            <label>
+                                <input type="checkbox" id="product-featured">
+                                Producto destacado
+                            </label>
+
+                            <label>
+                                <input type="checkbox" id="product-offer">
+                                En oferta
+                            </label>
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    id="product-active"
+                                    checked
+                                >
+                                Visible en tienda
+                            </label>
+
                         </div>
 
-                        <button type="submit" class="btn-primary">GUARDAR PRODUCTO</button>
+                        <button type="submit" class="btn-primary">
+                            GUARDAR PRODUCTO
+                        </button>
+
                         <p id="product-message" class="form-message"></p>
+
                     </form>
+
                 </div>
 
+
+                <!-- LISTADO PRODUCTOS -->
+
                 <div class="panel-card">
+
                     <div class="panel-heading">
+
                         <h2>Todos los productos</h2>
-                        <input id="product-search" class="search-input" placeholder="Buscar producto...">
+
+                        <input
+                            id="product-search"
+                            class="search-input"
+                            placeholder="Buscar producto..."
+                        >
+
                     </div>
 
                     <div id="products-list" class="table-container">
                         <p class="muted">Cargando productos...</p>
                     </div>
+
                 </div>
+
             </section>
 
-            <!-- CATEGORÍAS -->
+
+            <!-- ================= CATEGORÍAS ================= -->
+
             <section id="section-categories" class="admin-section hidden">
+
                 <div class="section-heading">
                     <div>
                         <p class="eyebrow">ORGANIZACIÓN</p>
                         <h1>Categorías</h1>
-                        <p class="muted">Organiza las categorías y subcategorías.</p>
+                        <p class="muted">
+                            Organiza las categorías y subcategorías.
+                        </p>
                     </div>
                 </div>
 
                 <div class="panel-card">
+
                     <h2>Crear categoría</h2>
 
                     <form id="category-form" class="admin-form">
+
                         <div class="form-grid">
+
                             <div>
                                 <label for="category-name">Nombre</label>
                                 <input id="category-name" required>
                             </div>
 
                             <div>
-                                <label for="category-parent">Categoría principal</label>
+                                <label for="category-parent">
+                                    Categoría principal
+                                </label>
+
                                 <select id="category-parent">
-                                    <option value="">Categoría principal nueva</option>
+                                    <option value="">
+                                        Categoría principal nueva
+                                    </option>
                                 </select>
                             </div>
+
                         </div>
 
-                        <button class="btn-primary" type="submit">GUARDAR CATEGORÍA</button>
+                        <button class="btn-primary" type="submit">
+                            GUARDAR CATEGORÍA
+                        </button>
+
                         <p id="category-message" class="form-message"></p>
+
                     </form>
+
                 </div>
 
                 <div class="panel-card">
+
                     <h2>Categorías registradas</h2>
-                    <div id="categories-list"></div>
+
+                    <div id="categories-list">
+                        <p class="muted">Cargando categorías...</p>
+                    </div>
+
                 </div>
+
             </section>
 
-            <!-- PEDIDOS -->
+
+            <!-- ================= PEDIDOS ================= -->
+
             <section id="section-orders" class="admin-section hidden">
+
                 <div class="section-heading">
+
                     <div>
                         <p class="eyebrow">VENTAS Y SOLICITUDES</p>
                         <h1>Pedidos</h1>
-                        <p class="muted">Consulta y actualiza los pedidos recibidos.</p>
+                        <p class="muted">
+                            Consulta y actualiza los pedidos recibidos.
+                        </p>
                     </div>
+
                 </div>
 
                 <div class="panel-card">
+
                     <div class="panel-heading">
+
                         <h2>Listado de pedidos</h2>
-                        <button id="refresh-orders" class="btn-outline">Actualizar</button>
+
+                        <button id="refresh-orders" class="btn-outline">
+                            Actualizar
+                        </button>
+
                     </div>
 
-                    <div id="orders-list" class="table-container"></div>
+                    <div id="orders-list" class="table-container">
+                        <p class="muted">Cargando pedidos...</p>
+                    </div>
+
                 </div>
+
             </section>
 
-            <!-- PROMOCIONES -->
+
+            <!-- ================= PROMOCIONES ================= -->
+
             <section id="section-promotions" class="admin-section hidden">
+
                 <div class="section-heading">
                     <div>
                         <p class="eyebrow">VENTAS ESPECIALES</p>
                         <h1>Promociones</h1>
-                        <p class="muted">Consulta y administra las ofertas de TROVA.</p>
+                        <p class="muted">
+                            Consulta y administra las ofertas de TROVA.
+                        </p>
                     </div>
                 </div>
 
                 <div class="panel-card">
+
+                    <h2>Promociones de TROVA</h2>
+
                     <p class="muted">
-                        Aquí administraremos los descuentos y las campañas
-                        de productos una vez conectemos este apartado.
+                        Aquí podrás administrar los descuentos y las
+                        campañas de productos.
                     </p>
+
                 </div>
+
             </section>
 
-            <!-- USUARIOS -->
+
+            <!-- ================= USUARIOS ================= -->
+
             <section id="section-users" class="admin-section hidden">
+
                 <div class="section-heading">
+
                     <div>
                         <p class="eyebrow">CONTROL DE ACCESO</p>
                         <h1>Usuarios</h1>
@@ -325,9 +523,14 @@
                             Administra quién puede ingresar al panel de TROVA.
                         </p>
                     </div>
+
                 </div>
 
+
+                <!-- AGREGAR USUARIO -->
+
                 <div class="panel-card">
+
                     <h2>Agregar usuario</h2>
 
                     <p class="muted">
@@ -335,91 +538,185 @@
                     </p>
 
                     <form id="user-form" class="admin-form">
+
                         <div class="form-grid">
+
                             <div>
-                                <label for="user-email">Correo electrónico</label>
+                                <label for="user-email">
+                                    Correo electrónico
+                                </label>
+
                                 <input
                                     id="user-email"
                                     type="email"
                                     placeholder="usuario@correo.com"
-                                    required>
+                                    autocomplete="off"
+                                    required
+                                >
                             </div>
 
                             <div>
-                                <label for="user-role">Rol de acceso</label>
+                                <label for="user-role">
+                                    Rol de acceso
+                                </label>
+
                                 <select id="user-role" required>
                                     <option value="editor">Editor</option>
                                     <option value="admin">Administrador</option>
                                 </select>
                             </div>
+
                         </div>
 
-                        <button type="submit" class="btn-primary" id="add-user-button">
+                        <button
+                            type="submit"
+                            class="btn-primary"
+                            id="add-user-button"
+                        >
                             AGREGAR USUARIO
                         </button>
 
                         <p id="user-message" class="form-message"></p>
+
                     </form>
+
                 </div>
 
+
+                <!-- LISTADO DE USUARIOS -->
+
                 <div class="panel-card">
+
                     <div class="panel-heading">
+
                         <div>
                             <h2>Miembros de TROVA</h2>
-                            <p class="muted">Usuarios con acceso a la administración.</p>
+
+                            <p class="muted">
+                                Usuarios con acceso a la administración.
+                            </p>
                         </div>
 
-                        <button type="button" id="refresh-users" class="btn-outline">
+                        <button
+                            type="button"
+                            id="refresh-users"
+                            class="btn-outline"
+                        >
                             Actualizar
                         </button>
+
                     </div>
 
                     <div id="users-list" class="table-container">
-                        <p class="muted">Los usuarios aparecerán aquí.</p>
+
+                        <p class="muted">
+                            Cargando miembros de la tienda...
+                        </p>
+
                     </div>
+
                 </div>
+
+
+                <!-- INFORMACIÓN DE SEGURIDAD -->
 
                 <div class="panel-card">
+
+                    <h2>Seguridad y permisos</h2>
+
                     <p class="muted">
-                        Por seguridad, únicamente el propietario podrá gestionar
-                        los accesos y los permisos de los demás miembros.
+                        El propietario de la tienda puede gestionar los
+                        accesos de los miembros del equipo.
                     </p>
+
+                    <p class="muted">
+                        Los administradores pueden gestionar usuarios
+                        según los permisos establecidos en Supabase.
+                    </p>
+
+                    <p class="muted">
+                        Los editores tienen acceso a las funciones
+                        administrativas permitidas por su rol.
+                    </p>
+
                 </div>
+
             </section>
 
-            <!-- CONFIGURACIÓN -->
+
+            <!-- ================= CONFIGURACIÓN ================= -->
+
             <section id="section-settings" class="admin-section hidden">
+
                 <div class="section-heading">
+
                     <div>
                         <p class="eyebrow">PERSONALIZACIÓN</p>
                         <h1>Configuración</h1>
-                        <p class="muted">Datos comerciales de tu tienda.</p>
+                        <p class="muted">
+                            Datos comerciales de tu tienda.
+                        </p>
                     </div>
+
                 </div>
 
                 <div class="panel-card">
+
                     <form id="settings-form" class="admin-form">
-                        <label for="settings-whatsapp">WhatsApp de TROVA</label>
-                        <input id="settings-whatsapp" placeholder="50370609793">
 
-                        <label for="settings-primary">Color principal</label>
-                        <input id="settings-primary" type="color" value="#171717">
+                        <label for="settings-whatsapp">
+                            WhatsApp de TROVA
+                        </label>
 
-                        <label for="settings-secondary">Color secundario</label>
-                        <input id="settings-secondary" type="color" value="#c6a15b">
+                        <input
+                            id="settings-whatsapp"
+                            placeholder="50370609793"
+                        >
+
+                        <label for="settings-primary">
+                            Color principal
+                        </label>
+
+                        <input
+                            id="settings-primary"
+                            type="color"
+                            value="#171717"
+                        >
+
+                        <label for="settings-secondary">
+                            Color secundario
+                        </label>
+
+                        <input
+                            id="settings-secondary"
+                            type="color"
+                            value="#c6a15b"
+                        >
 
                         <button type="submit" class="btn-primary">
                             GUARDAR CONFIGURACIÓN
                         </button>
 
                         <p id="settings-message" class="form-message"></p>
+
                     </form>
+
                 </div>
+
             </section>
 
-            <div id="global-message" class="global-message"></div>
+
+            <!-- MENSAJES GENERALES -->
+
+            <div
+                id="global-message"
+                class="global-message"
+                role="status"
+                aria-live="polite"
+            ></div>
 
         </main>
+
     </div>
 
 </body>
